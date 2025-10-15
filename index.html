@@ -1,87 +1,186 @@
 <!DOCTYPE html>
 <html lang="pt-PT" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Moradias Geminadas | Azevedo & Dias</title>
-  <meta name="description" content="Moradias geminadas de luxo em Santa Maria da Feira — design contemporâneo, acabamentos premium e localização privilegiada."/>
+  <meta name="description"
+    content="Moradias geminadas de luxo em Santa Maria da Feira — design contemporâneo, acabamentos premium e localização privilegiada." />
+
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='15' fill='%23111827'></rect><text x='50' y='50' font-size='50' dy='.3em' fill='%23c6a34f' text-anchor='middle' font-family='Playfair Display, serif' font-weight='bold'>AD</text></svg>">
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700;800&display=swap"
+    rel="stylesheet" />
   <style>
-    :root{
-      --color-background:#faf8f5;
-      --color-text:#3a3a3a;
-      --color-heading:#1a1a1a;
-      --color-primary:#c6a34f; /* dourado */
-      --color-secondary:#2e2e2e;
-      --color-header-bg: #111827; /* azul escuro do rodapé (gray-900) */
+    :root {
+      --color-background: #faf8f5;
+      --color-text: #3a3a3a;
+      --color-heading: #1a1a1a;
+      --color-primary: #c6a34f;
+      --color-secondary: #2e2e2e;
+      --color-header-bg: #111827;
     }
-    body{
-      font-family:'Lato',sans-serif;
-      background-color:var(--color-background);
-      color:var(--color-text);
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--color-background);
+      color: var(--color-text);
     }
-    h1,h2,h3,h4{
-      font-family:'Playfair Display',serif;
-      color:var(--color-heading);
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--color-heading);
     }
-    .tab-button{
-      transition:all .3s ease;
-      color: #a0aec0; /* cinza claro para texto inativo no cabeçalho escuro */
-      border-bottom:3px solid transparent;
-      padding:.5rem 0;
+
+    .tab-button {
+      transition: all .3s ease;
+      color: #a0aec0;
+      border-bottom: 3px solid transparent;
+      padding: .5rem 0;
     }
+
     .tab-button:hover {
       color: white;
     }
-    .tab-button.active{
-      color:var(--color-primary);
-      border-bottom-color:var(--color-primary);
-    }
-    .gallery-item{
-      position:relative;overflow:hidden;border-radius:.75rem;
-      border:1px solid rgba(198,163,79,.25);
-      box-shadow:0 8px 24px rgba(0,0,0,.08);
-    }
-    .zoomable{cursor:zoom-in;transition:transform .4s ease-out;}
-    .gallery-item:hover .zoomable{transform:scale(1.05);}
-    .fade-in-section{opacity:0;transform:translateY(20px);transition:opacity .6s ease-out,transform .6s ease-out;}
-    .fade-in-section.is-visible{opacity:1;transform:translateY(0);}
-    .modal-fade-in{animation:modalFadeIn .3s ease;}
-    @keyframes modalFadeIn{from{opacity:0}to{opacity:1}}
-    .scroll-progress{position:fixed;top:0;left:0;height:3px;background:var(--color-primary);width:0%;z-index:100;transition:width .25s ease-out}
 
-    .poi-item,.acabamento-item{border-color:#e2e8f0;border-bottom-width:1px}
-    .area-table{width:100%;margin-top:1.5rem;border-collapse:collapse}
-    .area-table td{padding:.75rem;border-bottom:1px solid #e9ecef}
-    .area-table tr:last-child td{border-bottom:none}
+    .tab-button.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: .75rem;
+      border: 1px solid rgba(198, 163, 79, .25);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+    }
+
+    .zoomable {
+      cursor: zoom-in;
+      transition: transform .4s ease-out;
+    }
+
+    .gallery-item:hover .zoomable {
+      transform: scale(1.05);
+    }
+
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease-out, transform .6s ease-out;
+    }
+
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal-fade-in {
+      animation: modalFadeIn .3s ease;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0 }
+      to { opacity: 1 }
+    }
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--color-primary);
+      width: 0%;
+      z-index: 100;
+      transition: width .25s ease-out
+    }
+
+    .poi-item,
+    .acabamento-item {
+      border-color: #e2e8f0;
+      border-bottom-width: 1px
+    }
+
+    .area-table {
+      width: 100%;
+      margin-top: 1.5rem;
+      border-collapse: collapse
+    }
+
+    .area-table td {
+      padding: .75rem;
+      border-bottom: 1px solid #e9ecef
+    }
+
+    .area-table tr:last-child td {
+      border-bottom: none
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* NOVAS ANIMAÇÕES PARA O HERO */
+    @keyframes fade-down {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    [data-animate="fade-down"] {
+      animation: fade-down 0.8s ease-out forwards;
+    }
+    [data-animate="fade-up"] {
+      animation: fade-up 0.8s ease-out forwards;
+    }
   </style>
 </head>
+
 <body class="text-gray-800">
 
   <div id="scroll-progress" class="scroll-progress"></div>
 
-  <!-- Hero Section -->
-  <section id="hero-section" class="relative h-screen flex items-center justify-center bg-[#0f1623] transition-opacity duration-1000 ease-in-out">
+<section id="hero-section" 
+  style="background-color: #2d3748;" 
+  class="relative h-screen flex items-center justify-center bg-cover bg-center bg-fixed transition-opacity duration-1000 ease-in-out">
+    
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
     <div class="relative z-10 text-center text-white px-6">
-      <h1 class="text-5xl md:text-6xl font-bold mb-4 text-[var(--color-primary)]">
+      <h1 data-animate="fade-down" class="text-5xl md:text-6xl font-bold mb-4 text-[var(--color-primary)] opacity-0">
         Portfólio Moradias Geminadas
       </h1>
-      <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+      <p data-animate="fade-up" class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto opacity-0" style="animation-delay: 0.3s;">
         Residências exclusivas, pensadas para uma vida de excelência,<br> no coração de Santa Maria da Feira.
       </p>
-      <p class="mt-8 text-sm uppercase tracking-widest text-[var(--color-primary)]">
+      <p data-animate="fade-up" class="mt-8 text-sm uppercase tracking-widest text-[var(--color-primary)] opacity-0" style="animation-delay: 0.6s;">
         AZEVEDO & DIAS
       </p>
-      <button id="view-villas-btn" class="inline-block mt-8 bg-gradient-to-r from-[#b9935a] to-[#f4e2d8] text-gray-900 font-semibold py-3 px-8 rounded-full shadow-lg hover:scale-105 transition">
+      <a href="#main-content" id="view-villas-btn" data-animate="fade-up"
+        class="inline-block mt-8 bg-gradient-to-r from-[#b9935a] to-[#f4e2d8] text-gray-900 font-semibold py-3 px-8 rounded-full shadow-lg hover:scale-105 transition opacity-0" style="animation-delay: 0.9s;">
         Ver Moradias
-      </button>
+      </a>
     </div>
   </section>
 
-  <!-- Main Content Wrapper (Initially Hidden) -->
   <div id="main-content" class="hidden opacity-0 transition-opacity duration-1000">
     <header class="sticky top-0 z-30 w-full bg-[var(--color-header-bg)] shadow-lg">
       <div class="container mx-auto flex items-center justify-between p-4">
@@ -99,11 +198,11 @@
       </div>
       <div class="md:hidden border-t border-gray-700">
         <div class="container mx-auto px-4 py-2 grid grid-cols-3 gap-2 text-sm">
-            <button data-tab-target="moradia-esquerda" class="tab-button active text-center">Esquerda</button>
-            <button data-tab-target="moradia-direita" class="tab-button text-center">Direita</button>
-            <button data-tab-target="acabamentos" class="tab-button text-center">Acabamentos</button>
-            <button data-tab-target="plantas" class="tab-button col-span-2 text-center">Plantas</button>
-            <button data-tab-target="localizacao" class="tab-button text-center">Local</button>
+          <button data-tab-target="moradia-esquerda" class="tab-button active text-center">Esquerda</button>
+          <button data-tab-target="moradia-direita" class="tab-button text-center">Direita</button>
+          <button data-tab-target="acabamentos" class="tab-button text-center">Acabamentos</button>
+          <button data-tab-target="plantas" class="tab-button col-span-2 text-center">Plantas</button>
+          <button data-tab-target="localizacao" class="tab-button text-center">Local</button>
         </div>
       </div>
     </header>
@@ -123,13 +222,21 @@
             <div class="flex items-center gap-3 font-bold col-span-full sm:col-span-1"><svg class="h-6 w-6 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg><span>Área Útil: 180 m²</span></div>
           </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="gallery-item h-80"><img src="https://placehold.co/600x400/d1d1d1/333333?text=Cozinha+1" alt="Cozinha Open Space" class="zoomable w-full h-full object-cover"></div>
-          <div class="gallery-item h-80"><img src="https://placehold.co/600x400/b3b3b3/333333?text=Quarto" alt="Quarto" class="zoomable w-full h-full object-cover"></div>
-          <div class="gallery-item h-80"><img src="https://placehold.co/600x400/e0e0e0/333333?text=Casa+de+Banho" alt="Casa de Banho" class="zoomable w-full h-full object-cover"></div>
-          <div class="gallery-item h-80"><img src="https://placehold.co/600x400/dcdcdc/333333?text=Cozinha+2" alt="Segunda Cozinha" class="zoomable w-full h-full object-cover"></div>
-          <div class="gallery-item h-80"><img src="https://placehold.co/600x400/bbbbbb/333333?text=Quarto+2" alt="Quarto Secundário" class="zoomable w-full h-full object-cover"></div>
-          <div class="gallery-item h-80"><img src="https://placehold.co/600x400/cccccc/333333?text=Garagem" alt="Garagem Espaçosa" class="zoomable w-full h-full object-cover"></div>
+
+        <h4 class="text-2xl font-bold text-[var(--color-secondary)] border-b-2 border-[var(--color-primary)] pb-2 mb-6">Piso 0</h4>
+        <div class="flex flex-nowrap gap-8 overflow-x-auto pb-4 hide-scrollbar">
+          <div class="gallery-item h-80 w-80 md:w-96 flex-shrink-0"><img src="https://placehold.co/600x400/dcdcdc/333333?text=Cozinha+Piso+0" alt="Cozinha do rés do chão" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+          <div class="gallery-item h-80 w-80 md:w-96 flex-shrink-0"><img src="https://placehold.co/600x400/cccccc/333333?text=Garagem" alt="Garagem para dois carros" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+          <div class="gallery-item h-80 w-80 md:w-96 flex-shrink-0"><img src="https://placehold.co/600x400/e0e0e0/333333?text=Casa+de+Banho" alt="Casa de Banho de Serviço no rés do chão" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+          <div class="gallery-item h-80 w-80 md:w-96 flex-shrink-0"><img src="https://placehold.co/600x400/c5c5c5/333333?text=Arrumos" alt="Anexo de arrumos" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+        </div>
+
+        <h4 class="text-2xl font-bold text-[var(--color-secondary)] border-b-2 border-[var(--color-primary)] pb-2 mb-6 mt-12">Piso 1</h4>
+        <div class="flex flex-nowrap gap-8 overflow-x-auto pb-4 hide-scrollbar">
+          <div class="gallery-item h-80 w-80 md:w-96 flex-shrink-0"><img src="https://placehold.co/600x400/d1d1d1/333333?text=Cozinha+Piso+1" alt="Cozinha Open Space no primeiro andar" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+          <div class="gallery-item h-80 w-80 md:w-96 flex-shrink-0"><img src="https://placehold.co/600x400/b3b3b3/333333?text=Quarto+Suite" alt="Quarto principal (Suite)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+          <div class="gallery-item h-80 w-80 md:w-96 flex-shrink-0"><img src="https://placehold.co/600x400/bbbbbb/333333?text=Quarto+2" alt="Quarto secundário no primeiro andar" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+          <div class="gallery-item h-80 w-80 md:w-96 flex-shrink-0"><img src="https://placehold.co/600x400/aaaaaa/ffffff?text=Quarto+3" alt="Terceiro quarto / Escritório" class="zoomable w-full h-full object-cover" loading="lazy"></div>
         </div>
       </div>
 
@@ -146,13 +253,17 @@
             <div class="flex items-center gap-3 font-bold col-span-full sm:col-span-1"><svg class="h-6 w-6 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg><span>Área Útil: 160 m²</span></div>
           </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="gallery-item h-80"><img src="https://placehold.co/600x400/c2c2c2/333333?text=Cozinha" alt="Cozinha Moderna" class="zoomable w-full h-full object-cover"></div>
-          <div class="gallery-item h-80"><img src="https://placehold.co/600x400/a7a7a7/ffffff?text=Sala+de+Estar" alt="Sala de Estar Luminosa" class="zoomable w-full h-full object-cover"></div>
-          <div class="gallery-item h-80"><img src="https://placehold.co/600x400/aeaeae/333333?text=Varanda" alt="Varanda Espaçosa" class="zoomable w-full h-full object-cover"></div>
-          <div class="gallery-item h-80"><img src="https://placehold.co/600x400/b1b1b1/ffffff?text=Quarto" alt="Quarto Aconchegante" class="zoomable w-full h-full object-cover"></div>
-          <div class="gallery-item h-80"><img src="https://placehold.co/600x400/b8b8b8/333333?text=Churrasqueira" alt="Área de Churrasco" class="zoomable w-full h-full object-cover"></div>
-          <div class="gallery-item h-80"><img src="https://placehold.co/600x400/e1e1e1/333333?text=Exterior" alt="Vista Exterior" class="zoomable w-full h-full object-cover"></div>
+        <h4 class="text-2xl font-bold text-[var(--color-secondary)] border-b-2 border-[var(--color-primary)] pb-2 mb-6">Piso 0</h4>
+        <div class="flex flex-nowrap gap-8 overflow-x-auto pb-4 hide-scrollbar">
+          <div class="gallery-item h-80 w-80 md:w-96 flex-shrink-0"><img src="https://placehold.co/600x400/c2c2c2/333333?text=Cozinha+e+Sala" alt="Cozinha e Sala em Open Space" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+          <div class="gallery-item h-80 w-80 md:w-96 flex-shrink-0"><img src="https://placehold.co/600x400/b8b8b8/333333?text=Churrasqueira" alt="Área exterior com churrasqueira" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+          <div class="gallery-item h-80 w-80 md:w-96 flex-shrink-0"><img src="https://placehold.co/600x400/e1e1e1/333333?text=Vista+Exterior" alt="Vista exterior da moradia e jardim" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+        </div>
+        <h4 class="text-2xl font-bold text-[var(--color-secondary)] border-b-2 border-[var(--color-primary)] pb-2 mb-6 mt-12">Piso 1</h4>
+        <div class="flex flex-nowrap gap-8 overflow-x-auto pb-4 hide-scrollbar">
+          <div class="gallery-item h-80 w-80 md:w-96 flex-shrink-0"><img src="https://placehold.co/600x400/b1b1b1/ffffff?text=Quarto" alt="Quarto com varanda" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+          <div class="gallery-item h-80 w-80 md:w-96 flex-shrink-0"><img src="https://placehold.co/600x400/a7a7a7/ffffff?text=Sala+de+Estar" alt="Sala de estar adicional no primeiro piso" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+          <div class="gallery-item h-80 w-80 md:w-96 flex-shrink-0"><img src="https://placehold.co/600x400/aeaeae/333333?text=Varanda" alt="Varanda espaçosa com vista" class="zoomable w-full h-full object-cover" loading="lazy"></div>
         </div>
       </div>
 
@@ -161,16 +272,16 @@
           <h2 class="text-4xl font-bold mb-8 text-center">Acabamentos de Excelência</h2>
           <p class="text-center text-gray-600 mb-10 max-w-3xl mx-auto">Cada detalhe foi selecionado para garantir o máximo de conforto, eficiência e durabilidade, refletindo um padrão de construção superior.</p>
           <div class="grid md:grid-cols-2 gap-x-12 gap-y-6">
-            <div class="acabamento-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg><div><h4 class="font-semibold text-lg">Vídeo Porteiro Wi-Fi</h4><p class="text-sm text-gray-600">Segurança e conveniência para atender remotamente.</p></div></div>
-            <div class="acabamento-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg><div><h4 class="font-semibold text-lg">Isolamento Térmico (Capoto)</h4><p class="text-sm text-gray-600">Sistema de alta densidade para máxima eficiência energética.</p></div></div>
-            <div class="acabamento-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" /></svg><div><h4 class="font-semibold text-lg">Caixilharia Corte Térmico</h4><p class="text-sm text-gray-600">Alumínio texturado e vidro duplo baixo emissivo.</p></div></div>
-            <div class="acabamento-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg><div><h4 class="font-semibold text-lg">Estores Elétricos</h4><p class="text-sm text-gray-600">Em alumínio térmico para conforto e privacidade.</p></div></div>
-            <div class="acabamento-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg><div><h4 class="font-semibold text-lg">Tectos Falsos com LED</h4><p class="text-sm text-gray-600">Isolamento “Roofmate” e focos embutidos.</p></div></div>
-            <div class="acabamento-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.636 5.636a9 9 0 0112.728 0m-12.728 0a5 5 0 010 7.072" /></svg><div><h4 class="font-semibold text-lg">Isolamento Acústico</h4><p class="text-sm text-gray-600">Parede dupla entre moradias com Lã de Rocha.</p></div></div>
-            <div class="acabamento-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg><div><h4 class="font-semibold text-lg">Cozinhas Equipadas</h4><p class="text-sm text-gray-600">Eletrodomésticos modernos e móveis hidrófugos.</p></div></div>
-            <div class="acabamento-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 11l7-7 7 7M5 19l7-7 7 7" /></svg><div><h4 class="font-semibold text-lg">Bomba de Calor AQS</h4><p class="text-sm text-gray-600">Solução eficiente e sustentável para AQS.</p></div></div>
-            <div class="acabamento-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg><div><h4 class="font-semibold text-lg">Pré-instalação de AC</h4><p class="text-sm text-gray-600">Pronto para climatização em todas as divisões.</p></div></div>
-            <div class="acabamento-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.904 10.236-3.904 14.141 0M1.394 9.343c5.468-5.468 14.282-5.468 19.75 0" /></svg><div><h4 class="font-semibold text-lg">Telecomunicações (ITED)</h4><p class="text-sm text-gray-600">Infraestrutura completa para conectividade.</p></div></div>
+            <div class="acabamento-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg><div><h4 class="font-semibold text-lg">Vídeo Porteiro Wi-Fi</h4><p class="text-sm text-gray-600">Segurança e conveniência para atender remotamente.</p></div></div>
+            <div class="acabamento-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg><div><h4 class="font-semibold text-lg">Isolamento Térmico (Capoto)</h4><p class="text-sm text-gray-600">Sistema de alta densidade para máxima eficiência energética.</p></div></div>
+            <div class="acabamento-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" /></svg><div><h4 class="font-semibold text-lg">Caixilharia Corte Térmico</h4><p class="text-sm text-gray-600">Alumínio texturado e vidro duplo baixo emissivo.</p></div></div>
+            <div class="acabamento-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg><div><h4 class="font-semibold text-lg">Estores Elétricos</h4><p class="text-sm text-gray-600">Em alumínio térmico para conforto e privacidade.</p></div></div>
+            <div class="acabamento-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg><div><h4 class="font-semibold text-lg">Tectos Falsos com LED</h4><p class="text-sm text-gray-600">Isolamento “Roofmate” e focos embutidos.</p></div></div>
+            <div class="acabamento-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.636 5.636a9 9 0 0112.728 0m-12.728 0a5 5 0 010 7.072" /></svg><div><h4 class="font-semibold text-lg">Isolamento Acústico</h4><p class="text-sm text-gray-600">Parede dupla entre moradias com Lã de Rocha.</p></div></div>
+            <div class="acabamento-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg><div><h4 class="font-semibold text-lg">Cozinhas Equipadas</h4><p class="text-sm text-gray-600">Eletrodomésticos modernos e móveis hidrófugos.</p></div></div>
+            <div class="acabamento-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 11l7-7 7 7M5 19l7-7 7 7" /></svg><div><h4 class="font-semibold text-lg">Bomba de Calor AQS</h4><p class="text-sm text-gray-600">Solução eficiente e sustentável para AQS.</p></div></div>
+            <div class="acabamento-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg><div><h4 class="font-semibold text-lg">Pré-instalação de AC</h4><p class="text-sm text-gray-600">Pronto para climatização em todas as divisões.</p></div></div>
+            <div class="acabamento-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.904 10.236-3.904 14.141 0M1.394 9.343c5.468-5.468 14.282-5.468 19.75 0" /></svg><div><h4 class="font-semibold text-lg">Telecomunicações (ITED)</h4><p class="text-sm text-gray-600">Infraestrutura completa para conectividade.</p></div></div>
           </div>
         </div>
       </div>
@@ -181,7 +292,7 @@
           <div class="grid md:grid-cols-2 gap-12 items-start">
             <div>
               <h3 class="text-3xl font-bold mb-6 text-center">Moradia Esquerda</h3>
-              <div class="gallery-item"><img src="Planta-Esquerda.PNG" alt="Planta da Moradia Esquerda" class="rounded-lg shadow-lg w-full border border-gray-200 zoomable"></div>
+              <div class="gallery-item"><img src="Planta-Esquerda.PNG" alt="Planta da Moradia Esquerda" class="rounded-lg shadow-lg w-full border border-gray-200 zoomable" loading="lazy"></div>
               <table class="area-table text-sm">
                 <tbody>
                   <tr><td class="font-semibold text-gray-600">Área Útil</td><td class="text-right font-bold text-lg">180 m²</td></tr>
@@ -192,7 +303,7 @@
             </div>
             <div>
               <h3 class="text-3xl font-bold mb-6 text-center">Moradia Direita</h3>
-              <div class="gallery-item"><img src="Planta-Direita.PNG" alt="Planta da Moradia Direita" class="rounded-lg shadow-lg w-full border border-gray-200 zoomable"></div>
+              <div class="gallery-item"><img src="Planta-Direita.PNG" alt="Planta da Moradia Direita" class="rounded-lg shadow-lg w-full border border-gray-200 zoomable" loading="lazy"></div>
               <table class="area-table text-sm">
                 <tbody>
                   <tr><td class="font-semibold text-gray-600">Área Útil</td><td class="text-right font-bold text-lg">160 m²</td></tr>
@@ -208,135 +319,161 @@
       <div id="localizacao" class="hidden fade-in-section">
         <div class="bg-white/50 p-8 rounded-xl shadow-lg">
           <h2 class="text-4xl font-bold mb-8 text-center">Localização Privilegiada</h2>
-          <p class="text-center text-gray-600 mb-10 max-w-3xl mx-auto">
-            Localizadas num refúgio de tranquilidade no Cavaco, estas moradias inserem-se numa rua exclusiva para moradores, garantindo máxima privacidade e ausência de tráfego. Desfrute da serenidade de uma zona residencial premium, mantendo a conveniência de acessos rápidos e a proximidade a todos os serviços essenciais.
-          </p>
+          <p class="text-center text-gray-600 mb-10 max-w-3xl mx-auto">Localizadas na Rua Cabo Verde, num refúgio de tranquilidade no Cavaco, estas moradias inserem-se numa rua exclusiva para moradores. Desfrute da serenidade de uma zona residencial premium, mantendo a conveniência de acessos rápidos e a proximidade a todos os serviços essenciais.</p>
           <div class="mb-8 rounded-lg overflow-hidden shadow-lg border border-gray-200">
-            <iframe width="100%" height="450" style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Rua%20Cabo%20Verde%20Santa%20Maria%20da%20Feira&t=&z=16&ie=UTF8&iwloc=&output=embed"></iframe>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3015.688880628678!2d-8.54898142337657!3d40.94541732047604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd237b1a0e606a25%3A0xe54e1a067168d6d5!2sR.%20Cabo%20Verde%2C%204520%20Santa%20Maria%20da%20Feira!5e0!3m2!1spt-PT!2spt!4v1668512988345!5m2!1spt-PT!2spt" 
+              width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
           <div class="grid md:grid-cols-2 gap-x-12 gap-y-6">
-            <div class="poi-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 16.382V5.618a1 1 0 00-1.447-.894L15 7m-6 10h6"/></svg><div><h4 class="font-semibold text-lg">Acessos Rápidos</h4><p class="text-sm text-gray-600">A poucos minutos dos acessos à A1 e A29.</p></div></div>
-            <div class="poi-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg><div><h4 class="font-semibold text-lg">Supermercados</h4><p class="text-sm text-gray-600">Continente, Pingo Doce e Lidl a menos de 5 minutos.</p></div></div>
-            <div class="poi-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M12 14.75L4 10l8-4.444 8 4.444L12 14.75z"/></svg><div><h4 class="font-semibold text-lg">Educação</h4><p class="text-sm text-gray-600">Proximidade a escolas básicas, secundárias e colégios.</p></div></div>
-            <div class="poi-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 6.223 17.657 18.657z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 13a4 4 0 100 8 4 4 0 000-8z"/></svg><div><h4 class="font-semibold text-lg">Centro Histórico</h4><p class="text-sm text-gray-600">A 5 minutos do Castelo e do centro.</p></div></div>
-            <div class="poi-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg><div><h4 class="font-semibold text-lg">Saúde e Bem-estar</h4><p class="text-sm text-gray-600">Hospital São Sebastião e farmácias nas proximidades.</p></div></div>
-            <div class="poi-item"><svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><h4 class="font-semibold text-lg">Lazer e Desporto</h4><p class="text-sm text-gray-600">Parques, ginásios e outras atividades por perto.</p></div></div>
+            <div class="poi-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 16.382V5.618a1 1 0 00-1.447-.894L15 7m-6 10h6"/></svg><div><h4 class="font-semibold text-lg">Acessos Rápidos</h4><p class="text-sm text-gray-600">A poucos minutos dos acessos à A1 e A29.</p></div></div>
+            <div class="poi-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg><div><h4 class="font-semibold text-lg">Supermercados</h4><p class="text-sm text-gray-600">Continente, Pingo Doce e Lidl a menos de 5 minutos.</p></div></div>
+            <div class="poi-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M12 14.75L4 10l8-4.444 8 4.444L12 14.75z"/></svg><div><h4 class="font-semibold text-lg">Educação</h4><p class="text-sm text-gray-600">Proximidade a escolas básicas, secundárias e colégios.</p></div></div>
+            <div class="poi-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 6.223 17.657 18.657z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 13a4 4 0 100 8 4 4 0 000-8z"/></svg><div><h4 class="font-semibold text-lg">Centro Histórico</h4><p class="text-sm text-gray-600">A 5 minutos do Castelo e do centro.</p></div></div>
+            <div class="poi-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg><div><h4 class="font-semibold text-lg">Saúde e Bem-estar</h4><p class="text-sm text-gray-600">Hospital São Sebastião e farmácias nas proximidades.</p></div></div>
+            <div class="poi-item flex items-center gap-4 py-3"><svg class="h-8 w-8 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><h4 class="font-semibold text-lg">Lazer e Desporto</h4><p class="text-sm text-gray-600">Parques, ginásios e outras atividades por perto.</p></div></div>
           </div>
         </div>
       </div>
-
     </main>
 
     <footer class="bg-gray-900 text-gray-300 mt-12">
       <div class="container mx-auto px-6 py-10 text-center">
         <h3 class="text-2xl font-bold text-[var(--color-primary)]">Moradias Geminadas</h3>
         <p class="mt-2 text-gray-400">Santa Maria da Feira • Azevedo & Dias</p>
-        <p class="mt-2 text-xs text-gray-500">&copy; 2025 | Todos os direitos reservados.</p>
+        <p class="mt-2 text-xs text-gray-500">© 2025 | Todos os direitos reservados.</p>
       </div>
     </footer>
 
     <div id="image-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-2 modal-fade-in">
-      <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">&times;</span>
-      <img id="modal-image" src="" alt="Imagem Ampliada" class="max-w-[95vw] max-h-[95vh] object-contain rounded-lg">
+      <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
+      <button id="prev-image" class="absolute left-4 text-white text-4xl font-bold cursor-pointer hover:text-gray-300 transition-colors p-4">‹</button>
+      <button id="next-image" class="absolute right-4 text-white text-4xl font-bold cursor-pointer hover:text-gray-300 transition-colors p-4">›</button>
+      <div class="text-center">
+        <img id="modal-image" src="" alt="Imagem Ampliada" class="max-w-[90vw] max-h-[85vh] object-contain rounded-lg">
+        <p id="modal-caption" class="text-white mt-3 text-sm italic"></p>
+      </div>
     </div>
+  </div>
 
-    <script>
-      // Scroll progress bar
-      window.addEventListener('scroll', () => {
-        const heroSection = document.getElementById('hero-section');
-        if (heroSection.style.display === 'none') {
-            const scrollTop = window.scrollY;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            document.getElementById('scroll-progress').style.width = progress + '%';
-        } else {
-            document.getElementById('scroll-progress').style.width = '0%';
-        }
+  <script>
+    window.addEventListener('scroll', () => {
+      const heroSection = document.getElementById('hero-section');
+      if (heroSection.style.display === 'none') {
+        const scrollTop = window.scrollY;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        document.getElementById('scroll-progress').style.width = progress + '%';
+      } else {
+        document.getElementById('scroll-progress').style.width = '0%';
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const heroSection = document.getElementById('hero-section');
+      const mainContent = document.getElementById('main-content');
+      const viewVillasBtn = document.getElementById('view-villas-btn');
+      const allTabs = document.querySelectorAll('.tab-button');
+      const allTabContents = document.querySelectorAll('.fade-in-section');
+
+      const revealContent = () => {
+        heroSection.style.opacity = '0';
+        setTimeout(() => {
+          heroSection.style.display = 'none';
+          mainContent.classList.remove('hidden');
+          setTimeout(() => {
+            mainContent.style.opacity = '1';
+            activateTab(allTabContents[0], false);
+          }, 50);
+        }, 1000);
+      };
+
+      viewVillasBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        revealContent();
       });
 
-      document.addEventListener('DOMContentLoaded', () => {
-        const heroSection = document.getElementById('hero-section');
-        const mainContent = document.getElementById('main-content');
-        const viewVillasBtn = document.getElementById('view-villas-btn');
-        
-        const allTabs = document.querySelectorAll('.tab-button');
-        const allTabContents = document.querySelectorAll('.fade-in-section');
-        const header = document.querySelector('header');
-
-        const revealContent = () => {
-            heroSection.style.opacity = '0';
-            
-            setTimeout(() => {
-                heroSection.style.display = 'none';
-                mainContent.classList.remove('hidden');
-                setTimeout(() => {
-                    mainContent.style.opacity = '1';
-                    activateTab(allTabContents[0], false); // Don't scroll on initial reveal
-                }, 50);
-            }, 1000); 
-        };
-        
-        viewVillasBtn.addEventListener('click', revealContent);
-        
-        const activateTab = (tabToShow, shouldScroll = true) => {
-            allTabContents.forEach(content => {
-                content.classList.toggle('hidden', content !== tabToShow);
-            });
-            allTabs.forEach(button => {
-                 button.classList.toggle('active', button.dataset.tabTarget === tabToShow.id);
-            });
-
-            if (tabToShow) {
-                tabToShow.classList.remove('is-visible');
-                void tabToShow.offsetWidth;
-                tabToShow.classList.add('is-visible');
-            }
-            
-            if (shouldScroll) {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        };
-
+      const activateTab = (tabToShow, shouldScroll = true) => {
+        allTabContents.forEach(content => {
+          content.classList.toggle('hidden', content !== tabToShow);
+        });
         allTabs.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const targetId = e.currentTarget.dataset.tabTarget;
-                const targetContent = document.getElementById(targetId);
-                activateTab(targetContent);
-            });
+          button.classList.toggle('active', button.dataset.tabTarget === tabToShow.id);
         });
+        if (tabToShow) {
+          tabToShow.classList.remove('is-visible');
+          void tabToShow.offsetWidth;
+          tabToShow.classList.add('is-visible');
+        }
+        if (shouldScroll) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      };
 
-        const imageModal = document.getElementById('image-modal');
-        const modalImage = document.getElementById('modal-image');
-        const closeModal = document.getElementById('close-modal');
-
-        const showModal = (src) => {
-            modalImage.src = src;
-            imageModal.classList.remove('hidden');
-        };
-        const hideModal = () => {
-            imageModal.classList.add('hidden');
-        };
-
-        document.addEventListener('click', (e) => {
-            if (e.target.matches('.zoomable')) showModal(e.target.src);
+      allTabs.forEach(button => {
+        button.addEventListener('click', (e) => {
+          const targetId = e.currentTarget.dataset.tabTarget;
+          const targetContent = document.getElementById(targetId);
+          activateTab(targetContent);
         });
-        closeModal.addEventListener('click', hideModal);
-        imageModal.addEventListener('click', (e) => {
-            if (e.target === imageModal) hideModal();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !imageModal.classList.contains('hidden')) hideModal();
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('is-visible');
-            });
-        }, { threshold: 0.1 });
-
-        allTabContents.forEach(section => observer.observe(section));
       });
-    </script>
-</body>
-</html>
 
+      const imageModal = document.getElementById('image-modal');
+      const modalImage = document.getElementById('modal-image');
+      const modalCaption = document.getElementById('modal-caption');
+      const closeModalBtn = document.getElementById('close-modal');
+      const prevBtn = document.getElementById('prev-image');
+      const nextBtn = document.getElementById('next-image');
+
+      let currentGallery = [];
+      let currentIndex = 0;
+
+      const showModal = (clickedImage) => {
+        const activeGalleryContainer = clickedImage.closest('.fade-in-section');
+        if (activeGalleryContainer) {
+          currentGallery = Array.from(activeGalleryContainer.querySelectorAll('.zoomable'));
+          currentIndex = currentGallery.indexOf(clickedImage);
+          updateModalContent();
+          imageModal.classList.remove('hidden');
+        }
+      };
+
+      const updateModalContent = () => {
+        if (currentGallery.length === 0) return;
+        const img = currentGallery[currentIndex];
+        modalImage.src = img.src;
+        modalCaption.textContent = img.alt || '';
+        prevBtn.style.display = currentIndex === 0 ? 'none' : 'block';
+        nextBtn.style.display = currentIndex === currentGallery.length - 1 ? 'none' : 'block';
+      };
+
+      const hideModal = () => imageModal.classList.add('hidden');
+      const showPrev = (e) => { e.stopPropagation(); if (currentIndex > 0) { currentIndex--; updateModalContent(); } };
+      const showNext = (e) => { e.stopPropagation(); if (currentIndex < currentGallery.length - 1) { currentIndex++; updateModalContent(); } };
+
+      document.addEventListener('click', (e) => { if (e.target.matches('.zoomable')) showModal(e.target); });
+      closeModalBtn.addEventListener('click', hideModal);
+      prevBtn.addEventListener('click', showPrev);
+      nextBtn.addEventListener('click', showNext);
+      imageModal.addEventListener('click', (e) => { if (e.target === imageModal) hideModal(); });
+
+      document.addEventListener('keydown', (e) => {
+        if (imageModal.classList.contains('hidden')) return;
+        if (e.key === 'Escape') hideModal();
+        if (e.key === 'ArrowLeft') { if (currentIndex > 0) { currentIndex--; updateModalContent(); } }
+        if (e.key === 'ArrowRight') { if (currentIndex < currentGallery.length - 1) { currentIndex++; updateModalContent(); } }
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+      }, { threshold: 0.1 });
+
+      allTabContents.forEach(section => observer.observe(section));
+    });
+  </script>
+</body>
+
+</html>
