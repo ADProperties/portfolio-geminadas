@@ -1,0 +1,136 @@
+:root {
+  --color-background: #faf8f5;
+  --color-text: #3a3a3a;
+  --color-heading: #1a1a1a;
+  --color-primary: #c6a34f;
+  --color-secondary: #2e2e2e;
+  --color-header-bg: #111827;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Playfair Display', serif;
+  color: var(--color-heading);
+}
+
+.tab-button {
+  transition: all .3s ease;
+  color: #a0aec0;
+  border-bottom: 3px solid transparent;
+  padding: .5rem 0;
+}
+
+.tab-button:hover {
+  color: white;
+}
+
+.tab-button.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: .75rem;
+  border: 1px solid rgba(198, 163, 79, .25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+}
+
+.zoomable {
+  cursor: zoom-in;
+  transition: transform .4s ease-out;
+}
+
+.gallery-item:hover .zoomable {
+  transform: scale(1.05);
+}
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .6s ease-out, transform .6s ease-out;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.modal-fade-in {
+  animation: modalFadeIn .3s ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--color-primary);
+  width: 0%;
+  z-index: 100;
+  transition: width .25s ease-out
+}
+
+.poi-item,
+.acabamento-item {
+  border-color: #e2e8f0;
+  border-bottom-width: 1px
+}
+
+.area-table {
+  width: 100%;
+  margin-top: 1.5rem;
+  border-collapse: collapse
+}
+
+.area-table td {
+  padding: .75rem;
+  border-bottom: 1px solid #e9ecef
+}
+
+.area-table tr:last-child td {
+  border-bottom: none
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+/* NOVAS ANIMAÇÕES PARA O HERO */
+@keyframes fade-down {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+[data-animate="fade-down"] {
+  animation: fade-down 0.8s ease-out forwards;
+}
+[data-animate="fade-up"] {
+  animation: fade-up 0.8s ease-out forwards;
+}
+
+
