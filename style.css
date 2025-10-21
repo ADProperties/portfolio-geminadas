@@ -11,6 +11,7 @@ body {
   font-family: 'Lato', sans-serif;
   background-color: var(--color-background);
   color: var(--color-text);
+  overflow-x: hidden; /* Evita scroll horizontal */
 }
 
 h1,
@@ -19,6 +20,70 @@ h3,
 h4 {
   font-family: 'Playfair Display', serif;
   color: var(--color-heading);
+}
+
+
+/* --- Estilos para o Background Animado do Hero --- */
+#hero-background-images .hero-bg-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation-name: heroBgFade;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 24s; /* Mantém 24s para 4 imagens */
+}
+
+@keyframes heroBgFade {
+  15% { opacity: 50; transform: scale(1.05); }
+  /* Aumenta a opacidade máxima para 35% */
+  30% { opacity: 50; transform: scale(1); } /* <-- VALOR AUMENTADO */
+  /* Mantém a 35% */
+  83% { opacity: 50; transform: scale(1); } /* <-- VALOR AUMENTADO */
+  
+  100% { opacity: 50; transform: scale(1); }
+}
+
+/* --- Animação de Pulso para o Botão CTA --- */
+
+/* 1. Define a animação "pulse-scale" */
+@keyframes pulse-scale {
+  0%, 100% {
+    /* Começa e termina em escala 1. 
+      Incluímos translateY(0) para garantir que não entra em conflito 
+      com a sua animação "fade-up" que também usa 'transform'.
+    */
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    /* A meio da animação, aumenta ligeiramente (3%) */
+    transform: translateY(0) scale(1.1); 
+  }
+}
+
+/* 2. Aplica a animação ao botão */
+#view-villas-btn {
+  /* Usa a animação 'pulse-scale', com duração de 2s, 
+    suavização 'ease-in-out', e repete 'infinite'
+  */
+  animation: pulse-scale 2s ease-in-out infinite;
+  
+  /* Começa a animação SÓ 2 segundos depois.
+    Isto dá tempo à sua animação 'fade-up' (0.8s + 0.9s delay) 
+    de terminar primeiro.
+  */
+  animation-delay: 2s;
+}
+
+/* 3. Corrige o comportamento ao passar o rato (hover)
+  Isto garante que a sua classe 'hover:scale-105' do Tailwind funciona
+  corretamente, parando o pulso e aplicando o zoom maior.
+*/
+#view-villas-btn:hover {
+  animation: none; /* Pára a animação de pulso */
+  transform: scale(1.05); /* Aplica o zoom de hover */
 }
 
 .tab-button {
@@ -38,21 +103,63 @@ h4 {
 }
 
 .gallery-item {
-  position: relative;
+  position: relative; /* Essencial para o overlay */
   overflow: hidden;
   border-radius: .75rem;
   border: 1px solid rgba(198, 163, 79, .25);
   box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+  /* Altura definida no HTML (h-80), largura será gerida pelo Splide */
 }
+
 
 .zoomable {
   cursor: zoom-in;
   transition: transform .4s ease-out;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .gallery-item:hover .zoomable {
   transform: scale(1.05);
 }
+
+/* --- Estilos para a Descrição na Imagem (Overlay) --- */
+.image-caption-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  color: #fff;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.gallery-item:hover .image-caption-overlay {
+  opacity: 1;
+}
+
+.image-caption-text {
+  margin: 0;
+  padding: 0;
+  font-size: 0.75rem; /* text-xs */
+  line-height: 1.2;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (min-width: 640px) { /* sm: */
+    .image-caption-text {
+        font-size: 0.875rem; /* text-sm */
+    }
+}
+/* --- Fim Estilos Descrição --- */
 
 .fade-in-section {
   opacity: 0;
@@ -115,7 +222,6 @@ h4 {
   scrollbar-width: none;
 }
 
-
 /* NOVAS ANIMAÇÕES PARA O HERO */
 @keyframes fade-down {
   from { opacity: 0; transform: translateY(-20px); }
@@ -133,4 +239,12 @@ h4 {
   animation: fade-up 0.8s ease-out forwards;
 }
 
+/* Ajustes finos para o Splide (opcional) */
+.splide__slide {
+    overflow: hidden; /* Garante que o conteúdo (imagem com zoom) não vaza */
+}
 
+/* Garante que o modal caption tem sombra */
+#modal-caption {
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
