@@ -1,12 +1,30 @@
 window.addEventListener('scroll', () => {
     const heroSection = document.getElementById('hero-section');
+    const header = document.querySelector('#main-content header');
+    const contactBar = document.getElementById('contact-bar'); // (Se tiver a barra de contacto)
+
     if (heroSection.style.display === 'none') {
+        if (contactBar) {
+            contactBar.classList.remove('contact-bar-hidden');
+        }
+
         const scrollTop = window.scrollY;
         const docHeight = document.body.scrollHeight - window.innerHeight;
         const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
         document.getElementById('scroll-progress').style.width = progress + '%';
+
+        if (scrollTop > 50) {
+            header.classList.add('header-scrolled');
+        } else {
+            header.classList.remove('header-scrolled');
+        }
+
     } else {
         document.getElementById('scroll-progress').style.width = '0%';
+        header.classList.remove('header-scrolled');
+        if (contactBar) {
+            contactBar.classList.add('contact-bar-hidden');
+        }
     }
 });
 
@@ -14,8 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroSection = document.getElementById('hero-section');
     const mainContent = document.getElementById('main-content');
     const viewVillasBtn = document.getElementById('view-villas-btn');
+    
+    // === LÓGICA DE NAVEGAÇÃO ATUALIZADA ===
+    
     const allTabs = document.querySelectorAll('.tab-button');
-    const allTabContents = document.querySelectorAll('.fade-in-section');
+    const allMainContents = document.querySelectorAll('.main-tab-content');
+    const allPageContents = document.querySelectorAll('.house-page-content');
+    const allFadeInSections = document.querySelectorAll('.fade-in-section');
+    
     let splideInstances = {}; // Guarda as instâncias Splide
 
     const revealContent = () => {
@@ -25,7 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
             mainContent.classList.remove('hidden');
             setTimeout(() => {
                 mainContent.style.opacity = '1';
-                activateTab(allTabContents[0], false);
+                // Mostra a primeira aba principal (Visão Geral)
+                activateTab(allMainContents[0], false);
             }, 50);
         }, 1000);
     };
@@ -35,24 +60,62 @@ document.addEventListener('DOMContentLoaded', () => {
         revealContent();
     });
 
-    const activateTab = (tabToShow, shouldScroll = true) => {
-        allTabContents.forEach(content => {
-            content.classList.toggle('hidden', content !== tabToShow);
+    // Função para mostrar uma PÁGINA (Moradia ou Plantas)
+    const showPage = (pageToShow, shouldScroll = true) => {
+        if (!pageToShow) return;
+
+        // Esconde TODO o conteúdo
+        allFadeInSections.forEach(content => {
+            content.classList.add('hidden');
         });
+        
+        // Remove 'active' de TODAS as abas principais
         allTabs.forEach(button => {
-            button.classList.toggle('active', button.dataset.tabTarget === tabToShow.id);
+            button.classList.remove('active');
         });
-        if (tabToShow) {
-            tabToShow.classList.remove('is-visible');
-            void tabToShow.offsetWidth;
-            tabToShow.classList.add('is-visible');
-            initializeSplideInElement(tabToShow);
-        }
+
+        // Mostra a página pedida
+        pageToShow.classList.remove('hidden');
+        pageToShow.classList.remove('is-visible');
+        void pageToShow.offsetWidth;
+        pageToShow.classList.add('is-visible');
+        
+        initializeSplideInElement(pageToShow);
+        
         if (shouldScroll) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
 
+    // Função para ativar uma ABA PRINCIPAL (Visão Geral, Acabamentos, etc.)
+    const activateTab = (tabToShow, shouldScroll = true) => {
+        if (!tabToShow) return;
+
+        // Esconde TODO o conteúdo
+        allFadeInSections.forEach(content => {
+            content.classList.add('hidden');
+        });
+        
+        // Mostra o conteúdo da aba pedida
+        tabToShow.classList.remove('hidden');
+
+        // Sincroniza os botões das abas
+        allTabs.forEach(button => {
+            button.classList.toggle('active', button.dataset.tabTarget === tabToShow.id);
+        });
+        
+        tabToShow.classList.remove('is-visible');
+        void tabToShow.offsetWidth;
+        tabToShow.classList.add('is-visible');
+        
+        initializeSplideInElement(tabToShow);
+        
+        if (shouldScroll) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
+    // Listener para as ABAS PRINCIPAIS
     allTabs.forEach(button => {
         button.addEventListener('click', (e) => {
             const targetId = e.currentTarget.dataset.tabTarget;
@@ -61,7 +124,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Lógica do Modal ---
+    // Listener para os LINKS DE PÁGINA (Cartões e Botões Internos)
+    const pageLinks = document.querySelectorAll('[data-page-link]');
+    pageLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.dataset.pageLink;
+            const targetContent = document.getElementById(targetId);
+            if (targetContent) {
+                showPage(targetContent, true);
+            }
+        });
+    });
+    
+    // === FIM DA LÓGICA DE NAVEGAÇÃO ===
+
+
+    // --- Lógica do Modal (Sem alterações) ---
     const imageModal = document.getElementById('image-modal');
     const modalImage = document.getElementById('modal-image');
     const modalCaption = document.getElementById('modal-caption');
@@ -109,10 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const img = currentGallery[currentIndex];
         modalImage.src = img.src;
         modalCaption.textContent = img.alt || '';
-        // *** REMOVIDO: Lógica para esconder botões ***
-        // prevBtn.style.display = currentIndex === 0 ? 'none' : 'block';
-        // nextBtn.style.display = currentIndex === currentGallery.length - 1 ? 'none' : 'block';
-        // *** Garante que os botões estão sempre visíveis (se houver mais de 1 imagem) ***
         const showButtons = currentGallery.length > 1;
         prevBtn.style.display = showButtons ? 'block' : 'none';
         nextBtn.style.display = showButtons ? 'block' : 'none';
@@ -121,7 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hideModal = () => imageModal.classList.add('hidden');
 
-    // *** ATUALIZADO: showPrev com loop ***
     const showPrev = (e) => {
         e.stopPropagation();
         if (currentGallery.length > 0) {
@@ -133,7 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // *** ATUALIZADO: showNext com loop ***
     const showNext = (e) => {
         e.stopPropagation();
         if (currentGallery.length > 0) {
@@ -156,7 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
     nextBtn.addEventListener('click', showNext);
     imageModal.addEventListener('click', (e) => { if (e.target === imageModal) hideModal(); });
 
-    // *** ATUALIZADO: keydown listener com loop ***
     document.addEventListener('keydown', (e) => {
         if (imageModal.classList.contains('hidden')) return;
         if (e.key === 'Escape') hideModal();
@@ -181,10 +253,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) entry.target.classList.add('is-visible');
         });
     }, { threshold: 0.1 });
-    allTabContents.forEach(section => observer.observe(section));
+    allFadeInSections.forEach(section => observer.observe(section));
     // --- Fim Intersection Observer ---
 
-    // --- Função para adicionar captions/overlays ---
+    // --- Função para adicionar captions/overlays (Sem alterações) ---
     const addImageCaptions = () => {
         document.querySelectorAll('.gallery-item img[alt]').forEach(img => {
             const parent = img.parentNode;
@@ -201,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     // --- Fim addImageCaptions ---
 
-    // --- Lógica Splide ---
+    // --- Lógica Splide (Sem alterações) ---
     const initializeSplide = (selector, options) => {
         try {
             const splideElement = document.querySelector(selector);
@@ -217,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     arrows       : false,
                     autoScroll   : {
                         pauseOnHover : false,
-                        pauseOnFocus : false, // Já estava false, mantém
+                        pauseOnFocus : false,
                         rewind       : false,
                         speed        : 1
                     },
@@ -261,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
      };
 
     addImageCaptions();
-    const initialTab = document.querySelector('#main-content .fade-in-section:not(.hidden)') || document.getElementById('moradia-esquerda');
+    const initialTab = document.querySelector('#main-content .fade-in-section:not(.hidden)') || document.getElementById('visao-geral');
     if (initialTab) {
         initializeSplideInElement(initialTab);
     } else {
