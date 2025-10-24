@@ -551,48 +551,17 @@ div[id^="moradia-"] .grid .flex svg {
 }
 
 
-/* --- CSS PARA AS DUAS IMAGENS NO CARTÃO (Geminada Esquerda) --- */
 
-.overview-card-bg-container {
-  position: absolute; /* Ocupa todo o espaço do cartão pai */
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* Garante que nada sai fora */
+/* --- CORREÇÃO: Tornar o botão do cartão sempre visível em mobile --- */
+@media (max-width: 767px) {
+  .overview-card-btn {
+    opacity: 1; /* Fica sempre visível */
+    transform: translateY(0); /* Fica na posição final */
+  }
+
+  /* Opcional: Remove a animação de "subir" no hover, 
+     já que o botão já está visível */
+  .overview-card:hover .overview-card-btn {
+    transform: translateY(0);
+  }
 }
-
-.overview-card-bg-img {
-  position: absolute; /* Imagens sobrepostas */
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0; /* Começam invisíveis */
-
-  /* Animação de fade in/out */
-  animation-name: cardBgFade;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-duration: 10s; /* Duração total (5s por imagem) */
-
-  /* Transição de escala (a mesma do hover geral) */
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Keyframes para a animação de fade entre as imagens */
-@keyframes cardBgFade {
-  0%   { opacity: 0; transform: scale(1.05); } /* Começa com zoom */
-  10%  { opacity: 1; }                          /* Fade in */
-  40%  { opacity: 1; transform: scale(1); }    /* Mantém visível e zoom out */
-  50%  { opacity: 0; }                          /* Fade out */
-  100% { opacity: 0; }                          /* Fica invisível */
-}
-
-/* Aplica o efeito de zoom no hover do cartão às imagens de fundo */
-.overview-card:hover .overview-card-bg-img,
-.overview-card:hover .overview-card-img { /* Aplica também à imagem única */
-  transform: scale(1.05);
-}
-
-/* --- FIM CSS DUAS IMAGENS --- */
