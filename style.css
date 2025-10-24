@@ -5,25 +5,29 @@
   --color-primary: #c6a34f;
   --color-secondary: #2e2e2e;
   --color-header-bg: #111827;
+  
+  /* --- NOVO: Sombra "Chique" --- */
+  /* Uma sombra mais suave e difusa para um look premium */
+  --shadow-chic: 0 12px 24px rgba(0, 0, 0, 0.07);
 }
 
 body {
-  font-family: 'Lato', sans-serif;
+  /* --- ALTERADO --- */
+  font-family: 'Jost', sans-serif;
   background-color: var(--color-background);
-  color: var(--color-text);
-  overflow-x: hidden; /* Evita scroll horizontal */
+  color: #1a1a1a; /* <-- MUITO MAIS ESCURO (preto total do título) */
+  overflow-x: hidden;
+  line-height: 1.7; /* <-- MAIS ESPAÇO (era 1.6) */
+  font-size: 17px;  /* <-- MAIOR (o default é 16px) */
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: 'Playfair Display', serif;
-  color: var(--color-heading);
+/* E vamos escurecer também os textos "cinza-claro" */
+.text-gray-600 {
+  color: #333 !important; /* Tailwind override */
 }
 
 
-/* --- Estilos para o Background Animado do Hero --- */
+/* --- Estilos para o Background Animado do Hero (Sem alteração) --- */
 #hero-background-images .hero-bg-img {
   position: absolute;
   inset: 0;
@@ -38,77 +42,71 @@ h4 {
 
 @keyframes heroBgFade {
   15% { opacity: 50; transform: scale(1.05); }
-  /* Aumenta a opacidade máxima para 35% */
-  30% { opacity: 50; transform: scale(1); } /* <-- VALOR AUMENTADO */
-  /* Mantém a 35% */
-  83% { opacity: 50; transform: scale(1); } /* <-- VALOR AUMENTADO */
-  
+  30% { opacity: 50; transform: scale(1); }
+  83% { opacity: 50; transform: scale(1); }
   100% { opacity: 50; transform: scale(1); }
 }
 
 /* --- Animação de Pulso para o Botão CTA --- */
-
-/* 1. Define a animação "pulse-scale" */
 @keyframes pulse-scale {
   0%, 100% {
-    /* Começa e termina em escala 1. 
-      Incluímos translateY(0) para garantir que não entra em conflito 
-      com a sua animação "fade-up" que também usa 'transform'.
-    */
     transform: translateY(0) scale(1);
   }
   50% {
-    /* A meio da animação, aumenta ligeiramente (3%) */
     transform: translateY(0) scale(1.1); 
   }
 }
 
-/* 2. Aplica a animação ao botão */
+/* --- ALTERADO: Botão CTA mais rico --- */
 #view-villas-btn {
-  /* Usa a animação 'pulse-scale', com duração de 2s, 
-    suavização 'ease-in-out', e repete 'infinite'
-  */
   animation: pulse-scale 2s ease-in-out infinite;
-  
-  /* Começa a animação SÓ 2 segundos depois.
-    Isto dá tempo à sua animação 'fade-up' (0.8s + 0.9s delay) 
-    de terminar primeiro.
-  */
   animation-delay: 2s;
+
+  /* Override do gradiente Tailwind para um dourado mais rico */
+  background-image: linear-gradient(to right, var(--color-primary), #e6c87e) !important;
+  color: #1a1a1a !important; /* Texto escuro para contraste */
+  font-weight: 500 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* 3. Corrige o comportamento ao passar o rato (hover)
-  Isto garante que a sua classe 'hover:scale-105' do Tailwind funciona
-  corretamente, parando o pulso e aplicando o zoom maior.
-*/
 #view-villas-btn:hover {
   animation: none; /* Pára a animação de pulso */
-  transform: scale(1.05); /* Aplica o zoom de hover */
+  /* Adiciona um ligeiro "levantar" ao passar o rato */
+  transform: scale(1.05) translateY(-2px); 
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
+/* --- ALTERADO: Botões das Tabs mais elegantes --- */
 .tab-button {
   transition: all .3s ease;
-  color: #a0aec0;
+  color: #a0aec0; /* cinza-azulado */
   border-bottom: 3px solid transparent;
   padding: .5rem 0;
+  /* Espaço para equilíbrio visual */
+  margin-top: 3px;
+  border-top: 3px solid transparent;
 }
 
 .tab-button:hover {
   color: white;
+  border-bottom-color: #4A5568; /* Bordo subtil no hover */
 }
 
 .tab-button.active {
   color: var(--color-primary);
   border-bottom-color: var(--color-primary);
+  font-weight: 700; /* Destaca o ativo */
 }
 
+/* --- ALTERADO: Galeria com sombra e bordo mais suaves --- */
 .gallery-item {
   position: relative; /* Essencial para o overlay */
   overflow: hidden;
   border-radius: .75rem;
-  border: 1px solid rgba(198, 163, 79, .25);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
-  /* Altura definida no HTML (h-80), largura será gerida pelo Splide */
+  /* Bordo dourado mais subtil */
+  border: 1px solid rgba(198, 163, 79, .15);
+  /* Nova sombra chique */
+  box-shadow: var(--shadow-chic);
 }
 
 
@@ -135,16 +133,10 @@ h4 {
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
   color: #fff;
   text-align: center;
-  opacity: 1; /* <-- ALTERADO DE 0 PARA 1 (sempre visível) */
+  opacity: 1; 
   transition: opacity 0.3s ease;
   pointer-events: none;
 }
-
-/* BLOCO REMOVIDO PARA QUE A LEGENDA ESTEJA SEMPRE VISÍVEL
-.gallery-item:hover .image-caption-overlay {
-  opacity: 1;
-} 
-*/
 
 .image-caption-text {
   margin: 0;
@@ -174,6 +166,15 @@ h4 {
   transform: translateY(0);
 }
 
+/* --- NOVO: Estilo para os cartões de conteúdo principais --- */
+/* Override ao .bg-white/50 do Tailwind para mais elegância */
+.fade-in-section > .bg-white\/50 {
+    background-color: rgba(255, 255, 255, 0.65); /* Um pouco mais opaco */
+    border: 1px solid rgba(198, 163, 79, 0.1); /* Bordo dourado quase invisível */
+    box-shadow: var(--shadow-chic) !important; /* Força a nova sombra */
+    transition: all 0.3s ease-out;
+}
+
 .modal-fade-in {
   animation: modalFadeIn .3s ease;
 }
@@ -195,17 +196,20 @@ h4 {
 }
 
 .poi-item,
-/* No style.css */
-.acabamento-item, .poi-item {
-  /* Define a transição */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.acabamento-item {
+  /* --- ALTERADO: Transição mais completa e padding --- */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  border-radius: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .acabamento-item:hover, .poi-item:hover {
   /* Efeito de "levantar" */
   transform: translateY(-4px);
-  /* Sombra suave para dar profundidade */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+  /* Sombra chique e fundo subtil */
+  box-shadow: var(--shadow-chic);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .area-table {
@@ -249,43 +253,299 @@ h4 {
   animation: fade-up 0.8s ease-out forwards;
 }
 
+/* --- NOVO: Refinamento dos subtítulos (Piso 0, Piso 1, etc.) --- */
+/* Faz override aos estilos Tailwind para um look de design mais coeso */
+.fade-in-section h4[class*="border-b-2"] {
+  font-size: 1.125rem !important; /* text-lg (mais pequeno) */
+  text-transform: uppercase;
+  letter-spacing: 0.075em; /* Mais espaçado */
+  border-bottom-width: 1px !important; /* Bordo mais fino */
+  padding-bottom: 0.75rem !important; /* Mais padding */
+}
+
+
 /* Ajustes finos para o Splide (opcional) */
 .splide__slide {
     overflow: hidden; /* Garante que o conteúdo (imagem com zoom) não vaza */
 }
 
-/* **** INÍCIO DA ALTERAÇÃO **** */
-/* Altera o #modal-caption para se parecer com o .image-caption-overlay */
+/* Legenda do Modal (Sem alteração) */
 #modal-caption {
-  /* Estilos de Posição */
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  
-  /* Estilos de Fundo */
-  padding: 0.75rem 1rem; /* Um pouco mais de padding para a imagem maior */
+  padding: 0.75rem 1rem; 
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
   color: #fff;
   text-align: center;
-  
-  /* Estilos de Texto (semelhante a .image-caption-text) */
   font-size: 0.875rem; /* text-sm */
   font-weight: 600;  /* font-semibold */
   text-transform: uppercase;
-  font-style: normal; /* Remove o italic que tinha antes */
+  font-style: normal;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-
-  /* Garantir que não quebra */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  
-  /* Arredondar cantos inferiores para condizer com a imagem (que tem rounded-lg) */
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-
-  /* Garante que não é "clicável" e passa o clique para o modal */
   pointer-events: none;
 }
-/* **** FIM DA ALTERAÇÃO **** */
+
+/* --- IDEIA 1: Efeito "Vidro Fosco" no Header --- */
+
+/* Define a cor primária em formato RGB para usarmos em 'rgba' */
+:root {
+  --color-primary-rgb: 198, 163, 79;
+}
+
+#main-content header.sticky {
+  /* Transição suave para a mudança de altura e fundo */
+  transition: padding 0.3s ease, background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+#main-content header.sticky.header-scrolled {
+  /* Fundo semi-transparente do "header azul" */
+  background-color: rgba(17, 24, 39, 0.85); /* Cor --color-header-bg com 85% opacidade */
+  
+  /* O efeito "vidro fosco" que desfoca o conteúdo por baixo */
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  
+  /* Bordo dourado subtil em baixo */
+  border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2);
+  
+  /* Encolhe ligeiramente o padding (altura) */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+/* --- FIM IDEIA 1 --- */
+
+
+/* --- IDEIA 2: Polir Ícones de Características --- */
+
+/* Seleciona todos os SVGs dentro das grelhas de características */
+div[id^="moradia-"] .grid .flex svg {
+  color: var(--color-primary);
+  background-color: rgba(var(--color-primary-rgb), 0.1); /* Fundo dourado 10% */
+  border-radius: 9999px; /* Torna-os redondos */
+  padding: 6px; /* Um respiro à volta do ícone */
+  
+  /* Ajusta o tamanho, já que o padding o aumenta */
+  height: 2.25rem; /* 36px */
+  width: 2.25rem; /* 36px */
+  flex-shrink: 0; /* Evita que o ícone encolha */
+}
+/* --- FIM IDEIA 2 --- */
+
+
+/* --- IDEIA 3: Animação de Zoom na Galeria --- */
+
+.gallery-item {
+  /* Garante que o ícone "+" fica dentro da caixa */
+  position: relative; 
+}
+
+/* Cria o ícone "+" usando um pseudo-elemento */
+.gallery-item::after {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  color: white;
+  font-size: 4rem;
+  font-weight: 200; /* Um "+" fino e elegante */
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  
+  opacity: 0; /* Começa escondido */
+  transition: opacity 0.4s ease;
+  pointer-events: none; /* Não interfere com o clique */
+}
+
+/* Escurece a imagem no hover */
+.gallery-item:hover .zoomable {
+  transform: scale(1.05); /* O zoom que já tinha */
+  filter: brightness(0.7); /* Escurece a imagem a 70% */
+}
+
+/* Mostra o ícone "+" no hover */
+.gallery-item:hover::after {
+  opacity: 1;
+}
+/* --- FIM IDEIA 3 --- */
+
+
+/* --- IDEIA 1: Visão Geral Cards --- */
+.overview-card {
+  display: block;
+  position: relative;
+  border-radius: 0.75rem; /* rounded-xl */
+  overflow: hidden;
+  box-shadow: var(--shadow-chic);
+  height: 50vh; /* 50% da altura da viewport */
+  min-height: 400px;
+  max-height: 450px;
+  text-decoration: none;
+  border: 1px solid rgba(var(--color-primary-rgb), 0.15);
+  transition: all 0.4s ease-out;
+}
+.overview-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+.overview-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.overview-card:hover .overview-card-img {
+  transform: scale(1.05);
+}
+.overview-card-content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  color: white;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.0) 100%);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+.overview-card-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: rgba(var(--color-primary-rgb), 0.9);
+  color: var(--color-heading);
+  text-shadow: none;
+  font-weight: 600;
+  border-radius: 999px; /* rounded-full */
+  transition: all 0.3s ease;
+  transform: translateY(10px);
+  opacity: 0;
+  align-self: flex-start; /* Botão alinhado à esquerda */
+}
+.overview-card:hover .overview-card-btn {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* --- IDEIA 2: Acabamentos Categorias --- */
+.acabamento-category-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem; /* text-2xl */
+  font-weight: 700;
+  color: var(--color-secondary);
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.03em;
+}
+.acabamento-grid {
+  display: grid;
+  gap: 1.5rem 3rem; /* gap-y-6 gap-x-12 */
+}
+@media (min-width: 768px) { /* md: */
+  .acabamento-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* --- CSS DA SUGESTÃO ANTERIOR (Indicador de Scroll) --- */
+/* (Se já o tens, ignora. Se não, adiciona) */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 48px;
+  border: 2px solid var(--color-primary);
+  border-radius: 25px;
+  z-index: 15;
+  opacity: 0.7;
+}
+.scroll-indicator span {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 10px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  animation: scroll-anim 2s ease-in-out infinite;
+}
+@keyframes scroll-anim {
+  0% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, 15px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+
+/* --- NOVA NAVEGAÇÃO INTERNA (Dentro das Moradias) --- */
+.internal-nav {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebrar linha em ecrãs pequenos */
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem; /* Espaço entre botões */
+  margin-top: 2.5rem; /* mt-10 */
+  padding-top: 1.5rem; /* pt-6 */
+  border-top: 1px solid rgba(var(--color-primary-rgb), 0.3);
+}
+
+.internal-nav-btn-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: var(--color-heading);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px; /* rounded-full */
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.internal-nav-btn-main:hover {
+  background-color: #dab768; /* Dourado um pouco mais claro */
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-chic);
+}
+
+.internal-nav-btn-secondary {
+  display: inline-flex;
+  align-items: center; /* Alinhamento vertical */
+  gap: 0.5rem; /* Espaço (para o caso de adicionar ícone) */
+  font-weight: 600; /* Mais Destaque */
+  color: var(--color-primary); /* Cor Dourada */
+  text-decoration: none;
+  padding: 0.75rem 1.5rem; /* Padding igual ao botão principal */
+  border-radius: 9999px; /* rounded-full */
+  transition: all 0.3s ease;
+  border: 2px solid var(--color-primary); /* Bordo Dourado */
+  background-color: transparent; /* Fundo transparente */
+}
+.internal-nav-btn-secondary:hover {
+  color: var(--color-heading); /* Texto Escuro no hover */
+  background-color: var(--color-primary); /* Fundo Dourado no hover */
+  transform: translateY(-2px); /* Efeito de levantar */
+  box-shadow: var(--shadow-chic); /* Sombra elegante */
+}
