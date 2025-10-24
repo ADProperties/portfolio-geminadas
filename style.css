@@ -135,14 +135,16 @@ h4 {
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
   color: #fff;
   text-align: center;
-  opacity: 0;
+  opacity: 1; /* <-- ALTERADO DE 0 PARA 1 (sempre visível) */
   transition: opacity 0.3s ease;
   pointer-events: none;
 }
 
+/* BLOCO REMOVIDO PARA QUE A LEGENDA ESTEJA SEMPRE VISÍVEL
 .gallery-item:hover .image-caption-overlay {
   opacity: 1;
-}
+} 
+*/
 
 .image-caption-text {
   margin: 0;
@@ -193,9 +195,17 @@ h4 {
 }
 
 .poi-item,
-.acabamento-item {
-  border-color: #e2e8f0;
-  border-bottom-width: 1px
+/* No style.css */
+.acabamento-item, .poi-item {
+  /* Define a transição */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.acabamento-item:hover, .poi-item:hover {
+  /* Efeito de "levantar" */
+  transform: translateY(-4px);
+  /* Sombra suave para dar profundidade */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
 }
 
 .area-table {
@@ -244,7 +254,38 @@ h4 {
     overflow: hidden; /* Garante que o conteúdo (imagem com zoom) não vaza */
 }
 
-/* Garante que o modal caption tem sombra */
+/* **** INÍCIO DA ALTERAÇÃO **** */
+/* Altera o #modal-caption para se parecer com o .image-caption-overlay */
 #modal-caption {
+  /* Estilos de Posição */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  
+  /* Estilos de Fundo */
+  padding: 0.75rem 1rem; /* Um pouco mais de padding para a imagem maior */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+  color: #fff;
+  text-align: center;
+  
+  /* Estilos de Texto (semelhante a .image-caption-text) */
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 600;  /* font-semibold */
+  text-transform: uppercase;
+  font-style: normal; /* Remove o italic que tinha antes */
   text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+
+  /* Garantir que não quebra */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  
+  /* Arredondar cantos inferiores para condizer com a imagem (que tem rounded-lg) */
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+
+  /* Garante que não é "clicável" e passa o clique para o modal */
+  pointer-events: none;
 }
+/* **** FIM DA ALTERAÇÃO **** */
