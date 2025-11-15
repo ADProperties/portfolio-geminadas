@@ -13,7 +13,7 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic" crossorigin />
 <link
     href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&family=Playfair+Display:wght@700;800&display=swap"
     rel="stylesheet" />
@@ -81,16 +81,14 @@
         <nav class="hidden md:flex flex-wrap justify-center space-x-2 md:space-x-6">
           <button data-tab-target="visao-geral" class="tab-button active text-sm md:text-base font-semibold px-2 focus:outline-none">✨ Visão Geral</button>
           <button data-tab-target="acabamentos" class="tab-button text-sm md:text-base font-semibold px-2 focus:outline-none">🛠️ Acabamentos</button>
-          <button data-tab-target="vistas-plantas" class="tab-button text-sm md:text-base font-semibold px-2 focus:outline-none">🏗️ Vistas</button>
           <button data-tab-target="localizacao" class="tab-button text-sm md:text-base font-semibold px-2 focus:outline-none">📍 Localização</button>
         </nav>
       </div>
       
       <div class="md:hidden border-t border-gray-700">
-        <div class="container mx-auto px-4 py-2 grid grid-cols-4 gap-2 text-sm">
+        <div class="container mx-auto px-4 py-2 grid grid-cols-3 gap-2 text-sm">
           <button data-tab-target="visao-geral" class="tab-button active text-center">Visão Geral</button>
           <button data-tab-target="acabamentos" class="tab-button text-center">Acabamentos</button>
-          <button data-tab-target="vistas-plantas" class="tab-button text-center">Vistas</button>
           <button data-tab-target="localizacao" class="tab-button text-center">Local</button>
         </div>
       </div>
@@ -131,7 +129,7 @@
             </div>
           </a>
 
-          </div> 
+        </div>
       </div>
       
       <div id="acabamentos" class="hidden fade-in-section main-tab-content">
@@ -175,45 +173,7 @@
           </div>
         </div>
       </div>
-
-      <div id="vistas-plantas" class="hidden fade-in-section main-tab-content">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold mb-4">Vista Exterior E Alçado</h2>
-          <p class="text-xl max-w-3xl mx-auto">Explore a fachada, vistas exteriores e as plantas detalhadas de cada moradia.</p>
-        </div>
-        
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="overview-card group">
-            <div class="overview-card-img">
-              <img src="3d_IA.jpeg" 
-                   alt="Vista Exterior" 
-                   class="zoomable w-full h-full object-cover" 
-                   loading="lazy">
-            </div>
-            <div class="overview-card-content">
-              <div>
-                <h3 class="text-3xl font-bold">Vista Exterior</h3>
-                <p class="text-lg opacity-90 mt-2">Perspetiva da fachada e muros.</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="overview-card group">
-            <div class="overview-card-img">
-              <img src="alçade.jpeg" 
-                   alt="Alçado" 
-                   class="zoomable w-full h-full object-cover" 
-                   loading="lazy">
-            </div>
-            <div class="overview-card-content">
-              <div>
-                <h3 class="text-3xl font-bold">Alçado</h3>
-                <p class="text-lg opacity-90 mt-2">Vista técnica da fachada.</p>
-              </div>
-            </div>
-          </div>
-        </div> 
-      </div>
+      
       <div id="localizacao" class="hidden fade-in-section main-tab-content">
         <div class="bg-white/50 p-8 rounded-xl shadow-lg">
           <h2 class="text-4xl font-bold mb-8 text-center">Localização Privilegiada</h2>
@@ -350,7 +310,7 @@
               </li>
                <li class="splide__slide">
                  <div class="gallery-item h-80"><img src="GemEsqPiso1/cozinha_esq_piso1_5.jpeg" alt="Cozinha e sala open space (Piso 1)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
-               </li>
+              </li>
                <li class="splide__slide">
                  <div class="gallery-item h-80"><img src="GemEsqPiso1/quarto_esq_piso1_1.jpeg" alt="Terceiro Quarto (Piso 1)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
               </li>
@@ -362,7 +322,7 @@
               </li>
                <li class="splide__slide">
                  <div class="gallery-item h-80"><img src="GemEsqPiso1/banho_esq_piso1_1.jpeg" alt="Casa de banho (Piso 1)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
-               </li>
+              </li>
             </ul>
            </div>
         </section>
@@ -395,24 +355,24 @@
         <section class="splide gallery-piso0-dir pb-4" aria-label="Galeria Moradia Direita Piso 0">
            <div class="splide__track">
              <ul class="splide__list">
-               <li class="splide__slide">
-                 <div class="gallery-item h-80"><img src="GemDirPiso0/sala_dir_piso0_1.jpeg" alt="Sala (Piso 0)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
-               </li>
                 <li class="splide__slide">
-                 <div class="gallery-item h-80"><img src="GemDirPiso0/sala_dir_piso0_2.jpeg" alt="Sala (Piso 0)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
-               </li>
-                <li class="splide__slide">
-                 <div class="gallery-item h-80"><img src="GemDirPiso0/quarto_dir_piso0_1.jpeg" alt="Primeiro Quarto (Piso 0)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
-               </li>
-                <li class="splide__slide">
-                 <div class="gallery-item h-80"><img src="GemDirPiso0/quarto_dir_piso0_2.jpeg" alt="Segundo Quarto (Piso 0)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
-               </li>
-                <li class="splide__slide">
-                 <div class="gallery-item h-80"><img src="GemDirPiso0/quarto_dir_piso0_3.jpeg" alt="Segundo Quarto (Piso 0)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
-               </li>
-                <li class="splide__slide">
-                 <div class="gallery-item h-80"><img src="GemDirPiso0/banho_dir_piso0_1.jpeg" alt="Casa de banho (Piso 0)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
-               </li>
+                  <div class="gallery-item h-80"><img src="GemDirPiso0/sala_dir_piso0_1.jpeg" alt="Sala (Piso 0)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+                </li>
+                 <li class="splide__slide">
+                  <div class="gallery-item h-80"><img src="GemDirPiso0/sala_dir_piso0_2.jpeg" alt="Sala (Piso 0)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+                </li>
+                 <li class="splide__slide">
+                  <div class="gallery-item h-80"><img src="GemDirPiso0/quarto_dir_piso0_1.jpeg" alt="Primeiro Quarto (Piso 0)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+                </li>
+                 <li class="splide__slide">
+                  <div class="gallery-item h-80"><img src="GemDirPiso0/quarto_dir_piso0_2.jpeg" alt="Segundo Quarto (Piso 0)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+                </li>
+                 <li class="splide__slide">
+                  <div class="gallery-item h-80"><img src="GemDirPiso0/quarto_dir_piso0_3.jpeg" alt="Segundo Quarto (Piso 0)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+                </li>
+                 <li class="splide__slide">
+                  <div class="gallery-item h-80"><img src="GemDirPiso0/banho_dir_piso0_1.jpeg" alt="Casa de banho (Piso 0)" class="zoomable w-full h-full object-cover" loading="lazy"></div>
+                </li>
              </ul>
            </div>
         </section>
@@ -530,7 +490,7 @@
                       <tr><td class="font-semibold">Sala Piso 0</td><td class="text-right">36 m²</td></tr>
                       <tr><td class="font-semibold">Banheiro Piso 0</td><td class="text-right">7 m²</td></tr>
                       <tr><td class="font-semibold">Terceiro Quarto Piso 0</td><td class="text-right">14 m²</td></tr>
-                   </tbody>
+                    </tbody>
                  </table>
                </div>
              </div>
@@ -574,3 +534,4 @@
 </body>
 
 </html>
+

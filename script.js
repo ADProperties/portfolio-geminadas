@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // === FIM DA LÓGICA DE NAVEGAÇÃO ===
 
 
-    // --- Lógica do Modal (Sem alterações) ---
+    // --- Lógica do Modal ---
     const imageModal = document.getElementById('image-modal');
     const modalImage = document.getElementById('modal-image');
     const modalCaption = document.getElementById('modal-caption');
@@ -150,12 +150,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentGallery = [];
     let currentIndex = 0;
 
+    // =========== FUNÇÃO showModal ATUALIZADA (CORREÇÃO) ===========
     const showModal = (clickedImage) => {
         const splideSlide = clickedImage.closest('.splide__slide');
         const splideRoot = splideSlide ? splideSlide.closest('.splide') : null;
+        const overviewCard = clickedImage.closest('.overview-card');
         let targetGalleryImages = [];
 
         if (splideRoot) {
+            // Lógica para galerias Splide (sem alteração)
             const allImagesInThisSplide = Array.from(splideRoot.querySelectorAll('.zoomable'));
             const uniqueImageSources = new Set();
             targetGalleryImages = allImagesInThisSplide.filter(img => {
@@ -165,13 +168,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 return false;
             });
+        } else if (overviewCard) {
+            // --- ALTERAÇÃO AQUI ---
+            // Lógica ATUALIZADA para cartões (procura na aba atual em vez de 'visao-geral')
+            const parentTab = clickedImage.closest('.main-tab-content'); // Procura a aba-pai
+            if (parentTab) {
+                // Encontra todas as imagens .zoomable em .overview-card DENTRO dessa aba
+                targetGalleryImages = Array.from(parentTab.querySelectorAll('.overview-card .zoomable'));
+            }
+            // --- FIM DA ALTERAÇÃO ---
         } else {
+            // Lógica para outras galerias (sem alteração)
             const activeGalleryContainer = clickedImage.closest('.fade-in-section');
             if (activeGalleryContainer) {
                 targetGalleryImages = Array.from(activeGalleryContainer.querySelectorAll('.gallery-item .zoomable'));
             }
         }
 
+        // O resto da função (que mostra o modal) é igual
         if (targetGalleryImages.length > 0) {
             currentGallery = targetGalleryImages;
             currentIndex = currentGallery.findIndex(img => img.src === clickedImage.src);
@@ -182,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
              console.error("Não foi possível determinar a galeria para o modal.");
         }
     };
+    // =========== FIM DA FUNÇÃO showModal ATUALIZADA ===========
 
     const updateModalContent = () => {
         if (currentGallery.length === 0) return;

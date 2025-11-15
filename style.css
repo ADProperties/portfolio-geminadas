@@ -418,6 +418,7 @@ div[id^="moradia-"] .grid .flex svg {
   color: white;
   background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.0) 100%);
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  pointer-events: none;
 }
 .overview-card-btn {
   display: inline-block;
