@@ -1,568 +1,297 @@
 :root {
-  --color-background: #faf8f5;
-  --color-text: #3a3a3a;
-  --color-heading: #1a1a1a;
-  --color-primary: #c6a34f;
-  --color-secondary: #2e2e2e;
-  --color-header-bg: #111827;
+  --color-background: #f9f9f9; /* Off-white premium */
+  --color-text: #333333;
+  --color-heading: #111827;
+  --color-primary: #c6a34f; /* Dourado Base */
+  --color-header-bg: #0f172a;
   
-  /* --- NOVO: Sombra "Chique" --- */
-  /* Uma sombra mais suave e difusa para um look premium */
-  --shadow-chic: 0 12px 24px rgba(0, 0, 0, 0.07);
+  /* --- GRADIENTE DOURADO PREMIUM --- */
+  --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba 40%, #b38728 60%, #fbf5b7 100%);
+  
+  /* --- SOMBRA DE LUXO (Suave) --- */
+  --shadow-chic: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
 }
 
 body {
-  /* --- ALTERADO --- */
   font-family: 'Jost', sans-serif;
   background-color: var(--color-background);
-  color: #1a1a1a; /* <-- MUITO MAIS ESCURO (preto total do título) */
+  color: var(--color-text);
   overflow-x: hidden;
-  line-height: 1.7; /* <-- MAIS ESPAÇO (era 1.6) */
-  font-size: 17px;  /* <-- MAIOR (o default é 16px) */
+  line-height: 1.7;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* E vamos escurecer também os textos "cinza-claro" */
-.text-gray-600 {
-  color: #333 !important; /* Tailwind override */
+/* --- TIPOGRAFIA --- */
+h1, h2, h3, .font-serif {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: -0.02em;
 }
 
+/* Títulos das Secções */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: var(--color-heading);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
 
-/* --- Estilos para o Background Animado do Hero (Sem alteração) --- */
+.section-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 300;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Texto Dourado Metálico */
+.text-gold-metallic {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: var(--color-primary); /* Fallback */
+}
+
+/* --- HERO SECTION --- */
 #hero-background-images .hero-bg-img {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
   opacity: 0;
-  animation-name: heroBgFade;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-duration: 24s; /* Mantém 24s para 4 imagens */
+  animation: heroBgFade 24s infinite ease-in-out;
 }
 
 @keyframes heroBgFade {
-  15% { opacity: 50; transform: scale(1.05); }
-  30% { opacity: 50; transform: scale(1); }
-  83% { opacity: 50; transform: scale(1); }
-  100% { opacity: 50; transform: scale(1); }
+  0% { opacity: 0; transform: scale(1.05); }
+  5% { opacity: 1; }
+  25% { opacity: 1; }
+  30% { opacity: 0; transform: scale(1); }
+  100% { opacity: 0; }
 }
 
-/* --- Animação de Pulso para o Botão CTA --- */
-@keyframes pulse-scale {
-  0%, 100% {
-    transform: translateY(0) scale(1);
+/* Botão Premium no Hero */
+.premium-btn {
+  display: inline-block;
+  margin-top: 2rem;
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.5);
+  padding: 1rem 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(5px);
+}
+.premium-btn:hover {
+  background: white;
+  color: black;
+  transform: translateY(-3px);
+}
+
+
+/* --- HEADER (Glassmorphism) --- */
+#main-content header {
+  transition: all 0.4s ease;
+  background-color: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+@supports (backdrop-filter: blur(10px)) {
+  #main-content header.header-scrolled {
+    background-color: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(198, 163, 79, 0.3);
   }
-  50% {
-    transform: translateY(0) scale(1.1); 
-  }
 }
 
-/* --- ALTERADO: Botão CTA mais rico --- */
-#view-villas-btn {
-  animation: pulse-scale 2s ease-in-out infinite;
-  animation-delay: 2s;
-
-  /* Override do gradiente Tailwind para um dourado mais rico */
-  background-image: linear-gradient(to right, var(--color-primary), #e6c87e) !important;
-  color: #1a1a1a !important; /* Texto escuro para contraste */
-  font-weight: 500 !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-#view-villas-btn:hover {
-  animation: none; /* Pára a animação de pulso */
-  /* Adiciona um ligeiro "levantar" ao passar o rato */
-  transform: scale(1.05) translateY(-2px); 
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-}
-
-/* --- ALTERADO: Botões das Tabs mais elegantes --- */
 .tab-button {
-  transition: all .3s ease;
-  color: #a0aec0; /* cinza-azulado */
-  border-bottom: 3px solid transparent;
-  padding: .5rem 0;
-  /* Espaço para equilíbrio visual */
-  margin-top: 3px;
-  border-top: 3px solid transparent;
+  position: relative;
+  color: #94a3b8;
+  padding: 0.5rem 0;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
 }
-
-.tab-button:hover {
-  color: white;
-  border-bottom-color: #4A5568; /* Bordo subtil no hover */
-}
-
-.tab-button.active {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
-  font-weight: 700; /* Destaca o ativo */
-}
-
-/* --- ALTERADO: Galeria com sombra e bordo mais suaves --- */
-.gallery-item {
-  position: relative; /* Essencial para o overlay */
-  overflow: hidden;
-  border-radius: .75rem;
-  /* Bordo dourado mais subtil */
-  border: 1px solid rgba(198, 163, 79, .15);
-  /* Nova sombra chique */
-  box-shadow: var(--shadow-chic);
-}
-
-
-.zoomable {
-  cursor: zoom-in;
-  transition: transform .4s ease-out;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.gallery-item:hover .zoomable {
-  transform: scale(1.05);
-}
-
-/* --- Estilos para a Descrição na Imagem (Overlay) --- */
-.image-caption-overlay {
+.tab-button::after {
+  content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-  color: #fff;
-  text-align: center;
-  opacity: 1; 
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.image-caption-text {
-  margin: 0;
-  padding: 0;
-  font-size: 0.75rem; /* text-xs */
-  line-height: 1.2;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-@media (min-width: 640px) { /* sm: */
-    .image-caption-text {
-        font-size: 0.875rem; /* text-sm */
-    }
-}
-/* --- Fim Estilos Descrição --- */
-
-.fade-in-section {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity .6s ease-out, transform .6s ease-out;
-}
-
-.fade-in-section.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* --- NOVO: Estilo para os cartões de conteúdo principais --- */
-/* Override ao .bg-white/50 do Tailwind para mais elegância */
-.fade-in-section > .bg-white\/50 {
-    background-color: rgba(255, 255, 255, 0.65); /* Um pouco mais opaco */
-    border: 1px solid rgba(198, 163, 79, 0.1); /* Bordo dourado quase invisível */
-    box-shadow: var(--shadow-chic) !important; /* Força a nova sombra */
-    transition: all 0.3s ease-out;
-}
-
-.modal-fade-in {
-  animation: modalFadeIn .3s ease;
-}
-
-@keyframes modalFadeIn {
-  from { opacity: 0 }
-  to { opacity: 1 }
-}
-
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
+  bottom: -2px; left: 0; width: 0; height: 1px;
   background: var(--color-primary);
-  width: 0%;
-  z-index: 100;
-  transition: width .25s ease-out
+  transition: width 0.3s ease;
 }
-
-.poi-item,
-.acabamento-item {
-  /* --- ALTERADO: Transição mais completa e padding --- */
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-  border-radius: 0.5rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
-.acabamento-item:hover, .poi-item:hover {
-  /* Efeito de "levantar" */
-  transform: translateY(-4px);
-  /* Sombra chique e fundo subtil */
-  box-shadow: var(--shadow-chic);
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
-.area-table {
-  width: 100%;
-  margin-top: 1.5rem;
-  border-collapse: collapse
-}
-
-.area-table td {
-  padding: .75rem;
-  border-bottom: 1px solid #e9ecef
-}
-
-.area-table tr:last-child td {
-  border-bottom: none
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* NOVAS ANIMAÇÕES PARA O HERO */
-@keyframes fade-down {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-[data-animate="fade-down"] {
-  animation: fade-down 0.8s ease-out forwards;
-}
-[data-animate="fade-up"] {
-  animation: fade-up 0.8s ease-out forwards;
-}
-
-/* --- NOVO: Refinamento dos subtítulos (Piso 0, Piso 1, etc.) --- */
-/* Faz override aos estilos Tailwind para um look de design mais coeso */
-.fade-in-section h4[class*="border-b-2"] {
-  font-size: 1.125rem !important; /* text-lg (mais pequeno) */
-  text-transform: uppercase;
-  letter-spacing: 0.075em; /* Mais espaçado */
-  border-bottom-width: 1px !important; /* Bordo mais fino */
-  padding-bottom: 0.75rem !important; /* Mais padding */
-}
+.tab-button:hover, .tab-button.active { color: white; }
+.tab-button.active::after { width: 100%; }
 
 
-/* Ajustes finos para o Splide (opcional) */
-.splide__slide {
-    overflow: hidden; /* Garante que o conteúdo (imagem com zoom) não vaza */
-}
-
-/* Legenda do Modal (Sem alteração) */
-#modal-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 0.75rem 1rem; 
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-  color: #fff;
-  text-align: center;
-  font-size: 0.875rem; /* text-sm */
-  font-weight: 600;  /* font-semibold */
-  text-transform: uppercase;
-  font-style: normal;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-  pointer-events: none;
-}
-
-/* --- IDEIA 1: Efeito "Vidro Fosco" no Header --- */
-
-/* Define a cor primária em formato RGB para usarmos em 'rgba' */
-:root {
-  --color-primary-rgb: 198, 163, 79;
-}
-
-#main-content header.sticky {
-  /* Transição suave para a mudança de altura e fundo */
-  transition: padding 0.3s ease, background-color 0.3s ease, backdrop-filter 0.3s ease;
-}
-
-#main-content header.sticky.header-scrolled {
-  /* Fundo semi-transparente do "header azul" */
-  background-color: rgba(17, 24, 39, 0.85); /* Cor --color-header-bg com 85% opacidade */
-  
-  /* O efeito "vidro fosco" que desfoca o conteúdo por baixo */
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  
-  /* Bordo dourado subtil em baixo */
-  border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2);
-  
-  /* Encolhe ligeiramente o padding (altura) */
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-/* --- FIM IDEIA 1 --- */
-
-
-/* --- IDEIA 2: Polir Ícones de Características --- */
-
-/* Seleciona todos os SVGs dentro das grelhas de características */
-div[id^="moradia-"] .grid .flex svg {
-  color: var(--color-primary);
-  background-color: rgba(var(--color-primary-rgb), 0.1); /* Fundo dourado 10% */
-  border-radius: 9999px; /* Torna-os redondos */
-  padding: 6px; /* Um respiro à volta do ícone */
-  
-  /* Ajusta o tamanho, já que o padding o aumenta */
-  height: 2.25rem; /* 36px */
-  width: 2.25rem; /* 36px */
-  flex-shrink: 0; /* Evita que o ícone encolha */
-}
-/* --- FIM IDEIA 2 --- */
-
-
-/* --- IDEIA 3: Animação de Zoom na Galeria --- */
-
-.gallery-item {
-  /* Garante que o ícone "+" fica dentro da caixa */
-  position: relative; 
-}
-
-/* Cria o ícone "+" usando um pseudo-elemento */
-.gallery-item::after {
-  content: '+';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-  color: white;
-  font-size: 4rem;
-  font-weight: 200; /* Um "+" fino e elegante */
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-  
-  opacity: 0; /* Começa escondido */
-  transition: opacity 0.4s ease;
-  pointer-events: none; /* Não interfere com o clique */
-}
-
-/* Escurece a imagem no hover */
-.gallery-item:hover .zoomable {
-  transform: scale(1.05); /* O zoom que já tinha */
-  filter: brightness(0.7); /* Escurece a imagem a 70% */
-}
-
-/* Mostra o ícone "+" no hover */
-.gallery-item:hover::after {
-  opacity: 1;
-}
-/* --- FIM IDEIA 3 --- */
-
-
-/* --- IDEIA 1: Visão Geral Cards --- */
+/* --- CARTÕES (Visão Geral) --- */
 .overview-card {
   display: block;
   position: relative;
-  border-radius: 0.75rem; /* rounded-xl */
+  height: 500px;
+  background: black; /* fallback */
   overflow: hidden;
   box-shadow: var(--shadow-chic);
-  height: 50vh; /* 50% da altura da viewport */
-  min-height: 400px;
-  max-height: 450px;
-  text-decoration: none;
-  border: 1px solid rgba(var(--color-primary-rgb), 0.15);
-  transition: all 0.4s ease-out;
 }
-.overview-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-}
+
 .overview-card-img {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
   background-size: cover;
   background-position: center;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
 .overview-card:hover .overview-card-img {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
+
 .overview-card-content {
-  position: relative;
-  z-index: 10;
-  height: 100%;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 2rem;
+  justify-content: flex-end;
+  padding: 2.5rem;
   color: white;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.0) 100%);
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-  pointer-events: none;
+  opacity: 0.95;
+  transition: opacity 0.3s;
 }
+
 .overview-card-btn {
+  margin-top: 1.5rem;
   display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: rgba(var(--color-primary-rgb), 0.9);
-  color: var(--color-heading);
-  text-shadow: none;
-  font-weight: 600;
-  border-radius: 999px; /* rounded-full */
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border-bottom: 1px solid var(--color-primary);
+  padding-bottom: 3px;
+  color: var(--color-primary);
+  align-self: start;
+}
+
+
+/* --- ACABAMENTOS (Grelha Estilosa) --- */
+.acabamento-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: white;
+  border-bottom: 1px solid #eee;
   transition: all 0.3s ease;
-  transform: translateY(10px);
-  opacity: 0;
-  align-self: flex-start; /* Botão alinhado à esquerda */
 }
-.overview-card:hover .overview-card-btn {
-  transform: translateY(0);
-  opacity: 1;
+.acabamento-item:hover {
+  background: #fff;
+  transform: translateX(5px);
+  border-color: var(--color-primary);
 }
-
-/* --- IDEIA 2: Acabamentos Categorias --- */
+.acabamento-item svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
 .acabamento-category-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.75rem; /* text-2xl */
-  font-weight: 700;
-  color: var(--color-secondary);
-  border-bottom: 2px solid var(--color-primary);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.03em;
-}
-.acabamento-grid {
-  display: grid;
-  gap: 1.5rem 3rem; /* gap-y-6 gap-x-12 */
-}
-@media (min-width: 768px) { /* md: */
-  .acabamento-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-/* --- CSS DA SUGESTÃO ANTERIOR (Indicador de Scroll) --- */
-/* (Se já o tens, ignora. Se não, adiciona) */
-.scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 28px;
-  height: 48px;
-  border: 2px solid var(--color-primary);
-  border-radius: 25px;
-  z-index: 15;
-  opacity: 0.7;
-}
-.scroll-indicator span {
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 10px;
-  background: var(--color-primary);
-  border-radius: 2px;
-  animation: scroll-anim 2s ease-in-out infinite;
-}
-@keyframes scroll-anim {
-  0% {
-    transform: translate(-50%, 0);
-    opacity: 1;
-  }
-  50% {
-    transform: translate(-50%, 15px);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translate(-50%, 0);
-    opacity: 1;
-  }
+  font-family: 'Jost', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: #999;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 
-/* --- NOVA NAVEGAÇÃO INTERNA (Dentro das Moradias) --- */
+/* --- GALERIAS & IMAGENS --- */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+}
+.zoomable {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  cursor: zoom-in;
+}
+.gallery-item:hover .zoomable {
+  transform: scale(1.05);
+}
+
+
+/* --- NAVEGAÇÃO INTERNA --- */
 .internal-nav {
   display: flex;
-  flex-wrap: wrap; /* Permite quebrar linha em ecrãs pequenos */
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem; /* Espaço entre botões */
-  margin-top: 2.5rem; /* mt-10 */
-  padding-top: 1.5rem; /* pt-6 */
-  border-top: 1px solid rgba(var(--color-primary-rgb), 0.3);
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
 }
 
 .internal-nav-btn-main {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
   background-color: var(--color-primary);
-  color: var(--color-heading);
-  font-weight: 600;
+  color: white;
   padding: 0.75rem 1.5rem;
-  border-radius: 9999px; /* rounded-full */
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: background 0.3s;
 }
-.internal-nav-btn-main:hover {
-  background-color: #dab768; /* Dourado um pouco mais claro */
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-chic);
-}
+.internal-nav-btn-main:hover { background-color: #b08d40; }
 
 .internal-nav-btn-secondary {
+  border: 1px solid #ccc;
+  color: #555;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s;
+}
+.internal-nav-btn-secondary:hover { border-color: black; color: black; }
+
+/* Ícones de features (bolinhas douradas) */
+.feature-icon {
+  background: rgba(198, 163, 79, 0.1);
+  padding: 8px;
+  border-radius: 50%;
+  color: var(--color-primary);
   display: inline-flex;
-  align-items: center; /* Alinhamento vertical */
-  gap: 0.5rem; /* Espaço (para o caso de adicionar ícone) */
-  font-weight: 600; /* Mais Destaque */
-  color: var(--color-primary); /* Cor Dourada */
-  text-decoration: none;
-  padding: 0.75rem 1.5rem; /* Padding igual ao botão principal */
-  border-radius: 9999px; /* rounded-full */
-  transition: all 0.3s ease;
-  border: 2px solid var(--color-primary); /* Bordo Dourado */
-  background-color: transparent; /* Fundo transparente */
-}
-.internal-nav-btn-secondary:hover {
-  color: var(--color-heading); /* Texto Escuro no hover */
-  background-color: var(--color-primary); /* Fundo Dourado no hover */
-  transform: translateY(-2px); /* Efeito de levantar */
-  box-shadow: var(--shadow-chic); /* Sombra elegante */
 }
 
+/* Tabela de Áreas */
+.area-table tr { border-bottom: 1px solid #eee; }
+.area-table td { padding: 1rem 0.5rem; }
 
+/* Scrollbar */
+.scroll-progress { background: var(--gold-gradient); height: 3px; position: fixed; top: 0; left: 0; z-index: 100; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
 
-/* --- CORREÇÃO: Tornar o botão do cartão sempre visível em mobile --- */
-@media (max-width: 767px) {
-  .overview-card-btn {
-    opacity: 1; /* Fica sempre visível */
-    transform: translateY(0); /* Fica na posição final */
-  }
+/* Animações */
+.fade-in-section { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
 
-  /* Opcional: Remove a animação de "subir" no hover, 
-     já que o botão já está visível */
-  .overview-card:hover .overview-card-btn {
-    transform: translateY(0);
-  }
+[data-animate="fade-down"] { animation: fadeDown 1s ease forwards; opacity: 0; }
+[data-animate="fade-up"] { animation: fadeUp 1s ease forwards; opacity: 0; }
+
+@keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Modal Caption */
+#modal-caption {
+    position: absolute; bottom: 0; width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: white; padding: 1.5rem;
+    text-align: center; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem;
 }
