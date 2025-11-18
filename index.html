@@ -67,7 +67,7 @@
         <nav class="hidden md:flex space-x-8">
           <button data-tab-target="visao-geral" class="tab-button active">Visão Geral</button>
           <button data-tab-target="acabamentos" class="tab-button">Acabamentos</button>
-          <button data-tab-target="vistas-plantas" class="tab-button">Vistas</button>
+          <button data-tab-target="vistas-plantas" class="tab-button">Terreno e Vistas</button>
           <button data-tab-target="localizacao" class="tab-button">Localização</button>
         </nav>
       </div>
@@ -196,45 +196,111 @@
         </div>
       </div>
 
-      <div id="vistas-plantas" class="hidden fade-in-section main-tab-content">
-        <div class="text-center mb-16">
-          <h2 class="section-title">Exterior e Alçado</h2>
-          <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#c6a34f] to-transparent mx-auto mb-6"></div>
-          <p class="section-subtitle">Explore a fachada, vistas exteriores e as plantas detalhadas.</p>
+<div id="vistas-plantas" class="hidden fade-in-section main-tab-content">
+  <div class="text-center mb-16">
+    <h2 class="section-title">Plantas e Alçados</h2>
+    <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#c6a34f] to-transparent mx-auto mb-6"></div>
+    <p class="section-subtitle">Explore a fachada, vistas exteriores, as plantas detalhadas e as áreas dos terrenos.</p>
+  </div>
+  
+  <div class="grid md:grid-cols-2 gap-10">
+    <a href="#" class="overview-card group" data-page-link="plantas-terreno">
+      <div class="overview-card-img" style="background-image: url('terreno_gem_dir.jpeg'); background-size: contain; background-repeat: no-repeat; background-color: #f9f9f9;"></div>
+      <div class="overview-card-content">
+        <div>
+          <h3 class="text-3xl font-serif text-white">Plantas dos Terrenos</h3>
+          <p class="text-sm text-gray-300 mt-2 font-light">Vista esquemática das parcelas individuais.</p>
+        </div>
+        <span class="overview-card-btn">Ver Detalhes →</span>
+      </div>
+    </a>
+    
+    <a href="#" class="overview-card group" data-page-link="exterior-alcado">
+      <div class="overview-card-img" style="background-image: url('3d_IA.jpeg');"></div>
+      <div class="overview-card-content">
+        <div>
+          <h3 class="text-3xl font-serif text-white">Exterior e Alçado</h3>
+          <p class="text-sm text-gray-300 mt-2 font-light">Perspetivas da fachada e vista técnica.</p>
+        </div>
+        <span class="overview-card-btn">Ver Vistas →</span>
+      </div>
+    </a>
+  </div>
+</div>
+<div id="plantas-terreno" class="hidden fade-in-section house-page-content">
+    <div class="bg-white p-8 md:p-12 shadow-chic mb-12 border border-gray-100 relative">
+        <div class="text-center mb-10">
+            <a href="#" data-page-link="vistas-plantas" class="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 hover:text-gray-900 transition-colors duration-200">
+                ← Voltar
+            </a>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-10 h-full">
-          <div class="overview-card group">
-            <div class="overview-card-img">
-              <img src="3d_IA.jpeg" 
-                   alt="Vista Exterior" 
-                   class="zoomable w-full h-full object-cover" 
-                   loading="lazy">
+        <h2 class="section-title text-center mb-10 text-4xl font-serif text-gray-900 leading-tight">Terreno por Moradia</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#c6a34f] to-transparent mx-auto mb-12"></div>
+        
+        <div class="grid md:grid-cols-2 gap-12 mt-10">
+            <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
+                <h3 class="text-3xl font-serif text-gray-900 mb-3 tracking-wide">Geminada Esquerda</h3>
+                <p class="text-2xl font-bold text-gold-metallic mb-8">Área de Terreno: 170 m²</p>
+                <div class="relative w-full aspect-square md:h-96 bg-white border border-gray-200 rounded-lg overflow-hidden shadow-inner-custom flex items-center justify-center">
+                    <img src="terreno_gem_esq.jpeg" 
+                         alt="Planta do Terreno da Moradia Geminada Esquerda" 
+                         class="zoomable object-contain w-full h-full p-4 transition-transform duration-300 hover:scale-105 cursor-zoom-in">
+                </div>
             </div>
-            <div class="overview-card-content pointer-events-none">
-              <div>
-                <h3 class="text-2xl font-serif text-white">Vista Exterior</h3>
-                <p class="text-sm text-gray-300 mt-2">Perspetiva da fachada e muros.</p>
-              </div>
+            
+            <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
+                <h3 class="text-3xl font-serif text-gray-900 mb-3 tracking-wide">Geminada Direita</h3>
+                <p class="text-2xl font-bold text-gold-metallic mb-8">Área de Terreno: 130 m²</p>
+                <div class="relative w-full aspect-square md:h-96 bg-white border border-gray-200 rounded-lg overflow-hidden shadow-inner-custom flex items-center justify-center">
+                    <img src="terreno_gem_dir.jpeg" 
+                         alt="Planta do Terreno da Moradia Geminada Direita" 
+                         class="zoomable object-contain w-full h-full p-4 transition-transform duration-300 hover:scale-105 cursor-zoom-in">
+                </div>
             </div>
-          </div>
-          
-          <div class="overview-card group">
-            <div class="overview-card-img">
-              <img src="alçade.jpeg" 
-                   alt="Alçado" 
-                   class="zoomable w-full h-full object-cover" 
-                   loading="lazy">
-            </div>
-            <div class="overview-card-content pointer-events-none">
-              <div>
-                <h3 class="text-2xl font-serif text-white">Alçado</h3>
-                <p class="text-sm text-gray-300 mt-2">Vista técnica da fachada.</p>
-              </div>
-            </div>
+        </div>
+    </div>
+</div>
+<div id="exterior-alcado" class="hidden fade-in-section house-page-content">
+    <div class="text-center mb-16">
+        <h2 class="section-title">Exterior e Alçado</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#c6a34f] to-transparent mx-auto mb-6"></div>
+        <p class="section-subtitle">Explore a fachada, vistas exteriores e a vista técnica do alçado.</p>
+    </div>
+    <div class="text-center mb-10"><a href="#" data-page-link="vistas-plantas" class="internal-nav-btn-secondary">← Voltar</a></div>
+
+    <div class="grid md:grid-cols-2 gap-10 h-full">
+      <div class="overview-card group">
+        <div class="overview-card-img">
+          <img src="3d_IA.jpeg" 
+               alt="Vista Exterior" 
+               class="zoomable w-full h-full object-cover" 
+               loading="lazy">
+        </div>
+        <div class="overview-card-content pointer-events-none">
+          <div>
+            <h3 class="text-2xl font-serif text-white">Vista Exterior</h3>
+            <p class="text-sm text-gray-300 mt-2">Perspetiva da fachada e muros.</p>
           </div>
         </div>
       </div>
+      
+      <div class="overview-card group">
+        <div class="overview-card-img">
+          <img src="alçade.jpeg" 
+               alt="Alçado" 
+               class="zoomable w-full h-full object-cover" 
+               loading="lazy">
+        </div>
+        <div class="overview-card-content pointer-events-none">
+          <div>
+            <h3 class="text-2xl font-serif text-white">Alçado</h3>
+            <p class="text-sm text-gray-300 mt-2">Vista técnica da fachada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 
       <div id="localizacao" class="hidden fade-in-section main-tab-content">
         <div class="bg-white p-8 md:p-12 shadow-chic max-w-6xl mx-auto border border-gray-100">
