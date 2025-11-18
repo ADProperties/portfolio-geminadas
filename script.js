@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainContent = document.getElementById('main-content');
     const viewVillasBtn = document.getElementById('view-villas-btn');
     
-    const allTabs = document.querySelectorAll('.tab-button');
+    const allTabs = document.querySelectorAll('[data-tab-target]');
     const allFadeInSections = document.querySelectorAll('.fade-in-section');
     
     let splideInstances = {};

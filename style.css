@@ -46,6 +46,8 @@ h1, h2, h3, .font-serif {
   margin-right: auto;
 }
 
+
+
 /* Texto Dourado Metálico */
 .text-gold-metallic {
   background: var(--gold-gradient);
@@ -294,4 +296,12 @@ h1, h2, h3, .font-serif {
     background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
     color: white; padding: 1.5rem;
     text-align: center; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem;
+}
+
+/* Adiciona isto ao final do style.css */
+.md\:hidden button.active {
+  color: white;
+  font-weight: 600;
+  /* Opcional: cor dourada se preferires */
+  /* color: var(--color-primary); */
 }
