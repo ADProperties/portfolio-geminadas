@@ -156,8 +156,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalImg = document.getElementById('modal-image');
     const modalCap = document.getElementById('modal-caption');
     const closeModal = document.getElementById('close-modal');
+    
+    // Botões originais (Desktop - 'hidden sm:block' no HTML)
     const nextBtn = document.getElementById('next-image');
     const prevBtn = document.getElementById('prev-image');
+    
+    // Adicionar as variáveis para os NOVOS botões Mobile (A CORREÇÃO - Passo 1)
+    const nextBtnMobile = document.getElementById('next-image-mobile');
+    const prevBtnMobile = document.getElementById('prev-image-mobile');
     
     // Variáveis para navegação no modal
     let currentGalleryImages = [];
@@ -190,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeModal.addEventListener('click', () => imageModal.classList.add('hidden'));
     imageModal.addEventListener('click', (e) => { if(e.target === imageModal) imageModal.classList.add('hidden'); });
     
+    // Ouvintes de evento para Botões Desktop
     nextBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         currentImageIndex = (currentImageIndex + 1) % currentGalleryImages.length;
@@ -201,6 +208,23 @@ document.addEventListener('DOMContentLoaded', () => {
         currentImageIndex = (currentImageIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
         updateModalImage();
     });
+
+    // Ouvintes de evento para Botões Mobile (A CORREÇÃO - Passo 2)
+    if (nextBtnMobile) {
+        nextBtnMobile.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex + 1) % currentGalleryImages.length;
+            updateModalImage();
+        });
+    }
+
+    if (prevBtnMobile) {
+        prevBtnMobile.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+            updateModalImage();
+        });
+    }
 
     // Intersection Observer para animações de scroll
     const observer = new IntersectionObserver((entries) => {
